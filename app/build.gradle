@@ -1,15 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
-
+    compileSdkVersion 26
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        applicationId "com.pfl.component"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // ARouter 配置 1
@@ -19,7 +17,6 @@ android {
             }
         }
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -29,23 +26,17 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    testCompile 'junit:junit:4.12'
 
     if (!isModule.toBoolean()) {
-        compile project(':module1')
-        compile project(':module2')
+        implementation project(':module1')
+        implementation project(':module2')
     } else {
-        compile project(':common')
+        implementation project(':common')
     }
 
     // ARouter 配置 2
-    compile rootProject.ext.deps.arouter
-    compile rootProject.ext.deps.arouterAnnotation
+    implementation rootProject.ext.deps.arouter
+    implementation rootProject.ext.deps.arouterAnnotation
     annotationProcessor rootProject.ext.deps.arouterProcessor
 
 }

@@ -1,14 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    compileSdkVersion 26
 
     defaultConfig {
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // ARouter 配置 1
@@ -17,6 +17,7 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+
     }
 
     buildTypes {
@@ -25,24 +26,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    testCompile 'junit:junit:4.12'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
+    testApi 'junit:junit:4.12'
+    androidTestApi 'com.android.support.test:runner:0.5'
+    androidTestApi 'com.android.support.test.espresso:espresso-core:2.2.2'
 
-    compile rootProject.ext.deps.design
-    compile rootProject.ext.deps.supportV4
-    compile rootProject.ext.deps.supportV7
-    compile rootProject.ext.deps.recyclerviewV7
-
-    // ARouter 配置 2
-    compile rootProject.ext.deps.arouter
-    compile rootProject.ext.deps.arouterAnnotation
-    annotationProcessor rootProject.ext.deps.arouterProcessor
-
+    api rootProject.ext.deps.design
+    api rootProject.ext.deps.supportV4
+    api rootProject.ext.deps.appcompatV7
+    api rootProject.ext.deps.recyclerviewV7
+    api rootProject.ext.deps.constraint
+    
+    api "cn.bingoogolapple:bga-banner:2.1.9@aar"
 }
