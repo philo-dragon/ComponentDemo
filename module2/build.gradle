@@ -23,6 +23,13 @@ android {
             }
         }
 
+        // ARouter 配置 2
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
+
     }
 
     buildTypes {
@@ -52,8 +59,8 @@ dependencies {
 
     implementation project(':common')
 
-    // ARouter 配置 2
+    // ARouter 配置 3
     implementation rootProject.ext.deps.arouter
-    implementation rootProject.ext.deps.arouterAnnotation
-    annotationProcessor rootProject.ext.deps.arouterProcessor
+    implementation rootProject.ext.deps.annotation
+    annotationProcessor rootProject.ext.deps.processor
 }

@@ -1,13 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
     defaultConfig {
         applicationId "com.pfl.component"
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // ARouter 配置 1
@@ -16,6 +18,14 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+
+        // ARouter 配置 2
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
+
     }
     buildTypes {
         release {
@@ -34,9 +44,9 @@ dependencies {
         implementation project(':common')
     }
 
-    // ARouter 配置 2
+    // ARouter 配置 3
     implementation rootProject.ext.deps.arouter
-    implementation rootProject.ext.deps.arouterAnnotation
-    annotationProcessor rootProject.ext.deps.arouterProcessor
+    implementation rootProject.ext.deps.annotation
+    annotationProcessor rootProject.ext.deps.processor
 
 }
