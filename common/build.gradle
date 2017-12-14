@@ -42,5 +42,9 @@ dependencies {
     api rootProject.ext.deps.recyclerviewV7
     api rootProject.ext.deps.constraint
 
+    // ARouter 配置 3
+    api rootProject.ext.deps.arouter
+    api rootProject.ext.deps.annotation
+
     api "cn.bingoogolapple:bga-banner:2.1.9@aar"
 }
