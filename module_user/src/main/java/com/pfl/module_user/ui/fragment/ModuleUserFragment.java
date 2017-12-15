@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.pfl.common.utils.RouteUtils;
-import com.pfl.module_user.R;
+import com.pfl.component.R;
 
 /**
  * A simple {@link Fragment} subclass.

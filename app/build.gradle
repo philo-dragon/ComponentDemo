@@ -41,9 +41,11 @@ dependencies {
     if (!isModule.toBoolean()) {
         implementation project(':module1')
         implementation project(':module2')
+        implementation project(':module_user')
     } else {
         implementation project(':common')
     }
+
 
     // ARouter 配置 3
     annotationProcessor rootProject.ext.deps.processor

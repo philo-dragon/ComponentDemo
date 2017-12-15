@@ -34,7 +34,7 @@ ext {
             // 第三方开源库
             arouter            : "com.alibaba:arouter-api:${depsVersion.arouter}",
             processor          : "com.alibaba:arouter-compiler:${depsVersion.aroutercompiler}",
-            annotation         : "com.alibaba:arouter-compiler:${depsVersion.arouterAnnotation}",
+            annotation         : "com.alibaba:arouter-annotation:${depsVersion.arouterAnnotation}",
             bottomNavigationBar: "com.ashokvarma.android:bottom-navigation-bar:${depsVersion.bottomNavigationBar}"
 
     ]
