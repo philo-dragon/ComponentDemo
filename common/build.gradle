@@ -45,6 +45,7 @@ dependencies {
     // ARouter 配置 3
     api rootProject.ext.deps.arouter
     api rootProject.ext.deps.annotation
+    api rootProject.ext.deps.bottomNavigationBar
 
     api "cn.bingoogolapple:bga-banner:2.1.9@aar"
 }

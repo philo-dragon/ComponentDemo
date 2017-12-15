@@ -1,20 +1,24 @@
-package com.pfl.component;
+package com.pfl.component.ui;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.pfl.component.R;
+import com.pfl.component.ui.activity.MainActivity;
 
 import cn.bingoogolapple.bgabanner.BGABanner;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = MainActivity.class.getSimpleName();
+public class WelcomeActivity extends AppCompatActivity {
+    private static final String TAG = WelcomeActivity.class.getSimpleName();
     private BGABanner mBackgroundBanner;
     private BGABanner mForegroundBanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_welcome);
         initView();
         setListener();
         processLogic();
@@ -35,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         mForegroundBanner.setEnterSkipViewIdAndDelegate(R.id.btn_guide_enter, R.id.tv_guide_skip, new BGABanner.GuideDelegate() {
             @Override
             public void onClickEnterOrSkip() {
-                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
                 finish();
             }
         });

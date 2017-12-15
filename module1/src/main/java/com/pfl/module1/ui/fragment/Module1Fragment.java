@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.pfl.common.utils.RouteUtils;
 import com.pfl.module1.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
+@Route(path = RouteUtils.MODULE1_FRAGMENT)
 public class Module1Fragment extends Fragment {
 
     @Override

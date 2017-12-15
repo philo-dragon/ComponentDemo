@@ -8,11 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.pfl.common.utils.RouteUtils;
 import com.pfl.module2.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
+@Route(path = RouteUtils.MODULE2_FRAGMENT)
 public class Module2Fragment extends Fragment {
 
 

@@ -12,28 +12,31 @@ ext {
 
     depsVersion = [
 
-            support          : "26.0.0-beta1",
-            constraint       : "1.0.2",
-            retrofit         : "2.10",
-            arouter          : "1.2.4",
-            aroutercompiler  : "1.1.4",
-            arouterAnnotation: "1.0.4",
+            support            : "26.0.0-beta1",
+            constraint         : "1.0.2",
+            retrofit           : "2.10",
+            arouter            : "1.2.4",
+            aroutercompiler    : "1.1.4",
+            arouterAnnotation  : "1.0.4",
+            bottomNavigationBar: "1.4.1"
 
     ]
 
     deps = [
 
             //Android Support
-            design           : "com.android.support:design:${depsVersion.support}",
-            supportV4        : "com.android.support:support-v4:${depsVersion.support}",
-            appcompatV7      : "com.android.support:appcompat-v7:${depsVersion.support}",
-            recyclerviewV7   : "com.android.support:recyclerview-v7:${depsVersion.support}",
-            constraint       : "com.android.support.constraint:constraint-layout:${depsVersion.constraint}",
+            design             : "com.android.support:design:${depsVersion.support}",
+            supportV4          : "com.android.support:support-v4:${depsVersion.support}",
+            appcompatV7        : "com.android.support:appcompat-v7:${depsVersion.support}",
+            recyclerviewV7     : "com.android.support:recyclerview-v7:${depsVersion.support}",
+            constraint         : "com.android.support.constraint:constraint-layout:${depsVersion.constraint}",
 
             // 第三方开源库
-            arouter          : "com.alibaba:arouter-api:${depsVersion.arouter}",
-            processor : "com.alibaba:arouter-compiler:${depsVersion.aroutercompiler}",
-            annotation: "com.alibaba:arouter-compiler:${depsVersion.arouterAnnotation}",
+            arouter            : "com.alibaba:arouter-api:${depsVersion.arouter}",
+            processor          : "com.alibaba:arouter-compiler:${depsVersion.aroutercompiler}",
+            annotation         : "com.alibaba:arouter-compiler:${depsVersion.arouterAnnotation}",
+            bottomNavigationBar: "com.ashokvarma.android:bottom-navigation-bar:${depsVersion.bottomNavigationBar}"
+
     ]
 
 

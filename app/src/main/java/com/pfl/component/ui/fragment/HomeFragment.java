@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.pfl.common.utils.RouteUtils;
 import com.pfl.component.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
+@Route(path = RouteUtils.APP_HOME_FRAGMENT)
 public class HomeFragment extends Fragment {
 
     @Override
