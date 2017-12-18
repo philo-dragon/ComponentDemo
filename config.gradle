@@ -18,7 +18,21 @@ ext {
             arouter            : "1.2.4",
             aroutercompiler    : "1.1.4",
             arouterAnnotation  : "1.0.4",
-            bottomNavigationBar: "1.4.1"
+            bottomNavigationBar: "1.4.1",
+
+            rxjava             : "2.1.6",
+            rxandroid          : "2.0.1",
+            retrofit           : "2.3.0",
+            converter_gson     : "2.3.0",
+            adapter_rxjava2    : "2.3.0",
+            rxlifecycle        : "2.1.0",
+
+            okhttp             : "3.9.0",
+            okio               : "1.13.0",
+            logging_interceptor: "3.8.1",
+
+            inflaterauto       : "1.0.1",
+            hyena              : "1.6.1",
 
     ]
 
@@ -35,7 +49,21 @@ ext {
             arouter            : "com.alibaba:arouter-api:${depsVersion.arouter}",
             processor          : "com.alibaba:arouter-compiler:${depsVersion.aroutercompiler}",
             annotation         : "com.alibaba:arouter-annotation:${depsVersion.arouterAnnotation}",
-            bottomNavigationBar: "com.ashokvarma.android:bottom-navigation-bar:${depsVersion.bottomNavigationBar}"
+            bottomNavigationBar: "com.ashokvarma.android:bottom-navigation-bar:${depsVersion.bottomNavigationBar}",
+
+            rxjava             : "io.reactivex.rxjava2:rxjava:${depsVersion.rxjava}",
+            rxandroid          : "io.reactivex.rxjava2:rxandroid:${depsVersion.rxandroid}",
+            retrofit           : "com.squareup.retrofit2:retrofit:${depsVersion.retrofit}",
+            converter_gson     : "com.squareup.retrofit2:converter-gson:${depsVersion.converter_gson}",
+            adapter_rxjava2    : "com.squareup.retrofit2:adapter-rxjava2:${depsVersion.adapter_rxjava2}",
+            rxlifecycle        : "com.trello.rxlifecycle2:rxlifecycle-components:${depsVersion.rxlifecycle}",
+
+            okhttp             : "com.squareup.okhttp3:okhttp:${depsVersion.okhttp}",
+            okio               : "com.squareup.okio:okio:${depsVersion.okio}",
+            logging_interceptor: "com.squareup.okhttp3:logging-interceptor:${depsVersion.logging_interceptor}",
+
+            inflaterauto       : "com.yan:inflaterauto:${depsVersion.inflaterauto}",// UI适配库
+            hyena              : "com.github.KnifeStone:Hyena:${depsVersion.hyena}",//鬣狗快速开发库
 
     ]
 

@@ -47,6 +47,24 @@ dependencies {
     api rootProject.ext.deps.annotation
     api rootProject.ext.deps.bottomNavigationBar
 
+    // RxJava2 Retrofit2 RxLifecycle
+    api rootProject.ext.deps.rxjava
+    api rootProject.ext.deps.rxandroid
+    api rootProject.ext.deps.retrofit
+    api rootProject.ext.deps.converter_gson
+    api rootProject.ext.deps.adapter_rxjava2
+    api rootProject.ext.deps.rxlifecycle
+
+    // okhttp
+    api rootProject.ext.deps.okhttp
+    api rootProject.ext.deps.okio
+    api rootProject.ext.deps.logging_interceptor
+
+    // UI适配库
+    api rootProject.ext.deps.inflaterauto
+    //鬣狗快速开发库
+    api rootProject.ext.deps.hyena
+
     api "cn.bingoogolapple:bga-banner:2.1.9@aar"
 
 }
