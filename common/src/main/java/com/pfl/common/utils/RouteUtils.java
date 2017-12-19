@@ -11,12 +11,12 @@ public class RouteUtils {
 
     // module_user
     public static final String MODULE_USER_FRAGMENT = "/module_user/userFragment";
+    public static final String SERVICE_USER = "/module_user/service_user";
 
     //module1
     public static final String MODULE1_FRAGMENT = "/module1/fragment";
 
     //module2
     public static final String MODULE2_FRAGMENT = "/module2/fragment";
-
 
 }
