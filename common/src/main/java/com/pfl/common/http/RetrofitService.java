@@ -26,9 +26,9 @@ public interface RetrofitService {
      */
     @FormUrlEncoded
     @POST("user/token")
-    Observable<AccessToken> getToken(@Field("grant_type") String grant_type,
-                                     @Field("client_id") String client_id,
-                                     @Field("client_secret") String client_secret
+    Observable<HttpResponse<AccessToken>> getToken(@Field("grant_type") String grant_type,
+                                                   @Field("client_id") String client_id,
+                                                   @Field("client_secret") String client_secret
     );
 
     @FormUrlEncoded

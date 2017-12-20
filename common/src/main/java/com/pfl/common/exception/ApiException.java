@@ -4,7 +4,7 @@ package com.pfl.common.exception;
  * Created by Administrator on 2017/12/18 0018.
  */
 
-class ApiException extends Exception {
+public class ApiException extends Exception {
     private int code;//错误码
     private String msg;//错误信息
 
@@ -14,6 +14,7 @@ class ApiException extends Exception {
     }
 
     public ApiException(int code, String msg) {
+        super();
         this.code = code;
         this.msg = msg;
     }

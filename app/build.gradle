@@ -46,7 +46,6 @@ dependencies {
         implementation project(':common')
     }
 
-
     // ARouter 配置 3
     annotationProcessor rootProject.ext.deps.processor
 

@@ -19,48 +19,67 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitFactory {
 
+    private static RetrofitFactory INSTANCE;
+
     private static final String BASE_URL = "http://api.baidu.com/";
-
     private static final long TIMEOUT = 15;
+    private static final long MAX_TRY_COUNT = 3;
+    private final RetrofitService service;
 
-    // Retrofit是基于OkHttpClient的，可以创建一个OkHttpClient进行一些配置
-    private static OkHttpClient httpClient = new OkHttpClient.Builder()
-            /*
-            这里可以添加一个HttpLoggingInterceptor，因为Retrofit封装好了从Http请求到解析，
-            出了bug很难找出来问题，添加HttpLoggingInterceptor拦截器方便调试接口
-             */
-            .addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-                @Override
-                public void log(String message) {
+    private RetrofitFactory() {
 
-                    LogUtils.d(message);
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .addNetworkInterceptor(netIntercepter)
+                .retryOnConnectionFailure(true)
+                .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .build();
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+
+
+        service = retrofit.create(RetrofitService.class);
+    }
+
+    public static RetrofitFactory getInstance() {
+        if (null == INSTANCE) {
+            synchronized (RetrofitFactory.class) {
+                if (null == INSTANCE) {
+                    INSTANCE = new RetrofitFactory();
                 }
-            }).setLevel(HttpLoggingInterceptor.Level.BASIC))
-            .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
-            .readTimeout(TIMEOUT, TimeUnit.SECONDS)
-            .build();
+            }
+        }
 
-    private static RetrofitService retrofitService = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            // 添加Gson转换器
-            .addConverterFactory(GsonConverterFactory.create(buildGson()))
-            // 添加Retrofit到RxJava的转换器
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .client(httpClient)
-            .build()
-            .create(RetrofitService.class);
-
-    public static RetrofitService getInstance() {
-        return retrofitService;
+        return INSTANCE;
     }
 
-    private static Gson buildGson() {
-        return new GsonBuilder()
-                .serializeNulls()
-                .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
-                // 此处可以添加Gson 自定义TypeAdapter
-                //.registerTypeAdapter(UserInfo.class, new UserInfoTypeAdapter())
-                .create();
+    //网络拦截器：主要用于重试或重写
+    private static Interceptor netIntercepter = new Interceptor() {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request();
+            Response response = chain.proceed(request);
+            int tryCount = 0;
+            while (!response.isSuccessful() && tryCount < MAX_TRY_COUNT) {
+                tryCount++;
+                response = chain.proceed(request);
+            }
+            return response;
+        }
+    };
+
+
+    public RetrofitService getService() {
+        return service;
     }
+
 }
