@@ -1,5 +1,6 @@
 package com.pfl.common.http;
 
+import com.pfl.common.entity.base.AccessToken;
 import com.pfl.common.entity.base.HttpResponse;
 import com.pfl.common.entity.module_user.UserInfo;
 
@@ -14,6 +15,22 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface RetrofitService {
+
+    /**
+     * 获取请求令牌
+     *
+     * @param grant_type
+     * @param client_id
+     * @param client_secret
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("user/token")
+    Observable<AccessToken> getToken(@Field("grant_type") String grant_type,
+                                     @Field("client_id") String client_id,
+                                     @Field("client_secret") String client_secret
+    );
+
     @FormUrlEncoded
     @POST("account/login")
     Observable<HttpResponse<UserInfo>> login(

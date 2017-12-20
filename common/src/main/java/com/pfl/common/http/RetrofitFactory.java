@@ -1,5 +1,6 @@
 package com.pfl.common.http;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,15 +25,6 @@ public class RetrofitFactory {
 
     // Retrofit是基于OkHttpClient的，可以创建一个OkHttpClient进行一些配置
     private static OkHttpClient httpClient = new OkHttpClient.Builder()
-            // 添加通用的Header
-            .addInterceptor(new Interceptor() {
-                @Override
-                public Response intercept(Chain chain) throws IOException {
-                    Request.Builder builder = chain.request().newBuilder();
-                    builder.addHeader("token", "123");
-                    return chain.proceed(builder.build());
-                }
-            })
             /*
             这里可以添加一个HttpLoggingInterceptor，因为Retrofit封装好了从Http请求到解析，
             出了bug很难找出来问题，添加HttpLoggingInterceptor拦截器方便调试接口
@@ -40,6 +32,8 @@ public class RetrofitFactory {
             .addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
                 @Override
                 public void log(String message) {
+
+                    LogUtils.d(message);
 
                 }
             }).setLevel(HttpLoggingInterceptor.Level.BASIC))
