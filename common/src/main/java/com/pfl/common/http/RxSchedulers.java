@@ -2,6 +2,7 @@ package com.pfl.common.http;
 
 import android.content.Context;
 
+import com.blankj.utilcode.util.NetworkUtils;
 import com.pfl.common.entity.base.HttpResponse;
 import com.pfl.common.entity.module_user.UserInfo;
 import com.pfl.common.exception.NoNetworkException;
@@ -26,11 +27,10 @@ public class RxSchedulers {
                         .doOnSubscribe(new Consumer<Disposable>() {
                             @Override
                             public void accept(Disposable disposable) throws Exception {
-                               /* if (!Utils.isNetworkConnected()) {
-                                    Toast.makeText(context, R.string.toast_network_error, Toast.LENGTH_SHORT).show();
-                                }*/
                                 // 没有网络
-                                throw new NoNetworkException();
+                                if (NetworkUtils.isConnected() && NetworkUtils.isAvailableByPing()) {
+                                    throw new NoNetworkException();
+                                }
                             }
                         })
                         .observeOn(AndroidSchedulers.mainThread());
@@ -40,9 +40,9 @@ public class RxSchedulers {
 
     private void login(Context context, String userId, String password) {
         Observable<HttpResponse<UserInfo>> observable = RetrofitFactory.getInstance().login(userId, password);
-        observable.
-                compose(RxSchedulers.compose()).
-                subscribe(new Consumer<Object>() {
+        observable
+                .compose(RxSchedulers.compose())
+                .subscribe(new Consumer<Object>() {
 
                     @Override
                     public void accept(Object o) throws Exception {

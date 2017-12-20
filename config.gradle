@@ -33,6 +33,7 @@ ext {
 
             inflaterauto       : "1.0.1",
             hyena              : "1.6.1",
+            AndroidUtilCode    : "1.9.12",
 
     ]
 
@@ -64,6 +65,7 @@ ext {
 
             inflaterauto       : "com.yan:inflaterauto:${depsVersion.inflaterauto}",// UI适配库
             hyena              : "com.github.KnifeStone:Hyena:${depsVersion.hyena}",//鬣狗快速开发库
+            AndroidUtilCode    : "com.blankj:utilcode:${depsVersion.AndroidUtilCode}",//工具类 http://www.jianshu.com/p/72494773aace
 
     ]
 
