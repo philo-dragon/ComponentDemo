@@ -28,7 +28,7 @@ public class RxSchedulers {
                             @Override
                             public void accept(Disposable disposable) throws Exception {
                                 // 没有网络
-                                if (NetworkUtils.isConnected() && NetworkUtils.isAvailableByPing()) {
+                                if (!NetworkUtils.isConnected() /*&& !NetworkUtils.isAvailableByPing()*/) {
                                     throw new NoNetworkException();
                                 }
                             }
@@ -36,19 +36,6 @@ public class RxSchedulers {
                         .observeOn(AndroidSchedulers.mainThread());
             }
         };
-    }
-
-    private void login(Context context, String userId, String password) {
-        Observable<HttpResponse<UserInfo>> observable = RetrofitFactory.getInstance().login(userId, password);
-        observable
-                .compose(RxSchedulers.compose())
-                .subscribe(new Consumer<Object>() {
-
-                    @Override
-                    public void accept(Object o) throws Exception {
-
-                    }
-                });
     }
 
 }

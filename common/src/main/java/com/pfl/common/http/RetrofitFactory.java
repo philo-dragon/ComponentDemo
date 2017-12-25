@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.lang.reflect.Proxy;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
@@ -21,7 +22,7 @@ public class RetrofitFactory {
 
     private static RetrofitFactory INSTANCE;
 
-    private static final String BASE_URL = "http://api.baidu.com/";
+    private static final String BASE_URL = "http://apitest.topzuqiu.cn/";
     private static final long TIMEOUT = 15;
     private static final long MAX_TRY_COUNT = 3;
     private final RetrofitService service;

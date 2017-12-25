@@ -31,21 +31,4 @@ public interface RetrofitService {
                                                    @Field("client_secret") String client_secret
     );
 
-    @FormUrlEncoded
-    @POST("account/login")
-    Observable<HttpResponse<UserInfo>> login(
-            @Field("userId") String userId,
-            @Field("password") String password
-    );
-
-    @GET("video/getUrl")
-    Observable<HttpResponse<String>> getVideoUrl(
-            @Query("id") long id
-    );
-
-    @FormUrlEncoded
-    @POST("user/addVideo")
-    Observable<HttpResponse<Boolean>> addVideo(
-            @FieldMap Map<String, Object> map
-    );
 }
