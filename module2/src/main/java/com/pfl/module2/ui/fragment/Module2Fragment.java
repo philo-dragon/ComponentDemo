@@ -18,6 +18,7 @@ import com.pfl.common.http.RetrofitFactory;
 import com.pfl.common.http.RetrofitService;
 import com.pfl.common.http.RxSchedulers;
 import com.pfl.common.utils.RouteUtils;
+import com.pfl.common.utils.StatusBarModelUtils;
 import com.pfl.component.R;
 
 import io.reactivex.Observer;
@@ -38,6 +39,13 @@ public class Module2Fragment extends Fragment {
         // Inflate the layout for this fragment textView
         View view = inflater.inflate(R.layout.fragment_module2, container, false);
         textView = view.findViewById(R.id.textView);
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StatusBarModelUtils.setStatusBarDarkMode(getActivity(), false);
+            }
+        });
 
         requestData();
         return view;

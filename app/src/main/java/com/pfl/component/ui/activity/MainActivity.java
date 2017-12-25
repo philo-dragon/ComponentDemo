@@ -1,24 +1,23 @@
 package com.pfl.component.ui.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.pfl.common.utils.RouteUtils;
+import com.pfl.common.utils.StatusBarModelUtils;
 import com.pfl.component.R;
-import com.pfl.component.ui.fragment.HomeFragment;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.bingoogolapple.bgabanner.BGABanner;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener, ViewPager.OnPageChangeListener {
 
@@ -152,5 +151,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     public void onPageScrollStateChanged(int state) {
 
     }
+
 }
 

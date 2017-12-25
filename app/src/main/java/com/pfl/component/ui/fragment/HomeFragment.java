@@ -12,6 +12,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.pfl.common.entity.module_user.UserInfo;
 import com.pfl.common.service.ModuleUserRouteService;
 import com.pfl.common.utils.RouteUtils;
+import com.pfl.common.utils.StatusBarModelUtils;
 import com.pfl.component.R;
 
 /**
@@ -29,6 +30,13 @@ public class HomeFragment extends Fragment {
         if (null != userInfo) {
             textView.setText(userInfo.getName() + " , " + userInfo.getMobileNum());
         }
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StatusBarModelUtils.setStatusBarDarkMode(getActivity(), true);
+            }
+        });
         return view;
     }
 
