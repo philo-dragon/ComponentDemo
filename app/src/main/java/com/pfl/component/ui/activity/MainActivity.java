@@ -12,6 +12,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.pfl.common.base.BaseActivity;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.common.utils.StatusBarModelUtils;
 import com.pfl.component.R;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = RouteUtils.APP_MAIN_ACTIVITY)
-public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener, ViewPager.OnPageChangeListener {
+public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener, ViewPager.OnPageChangeListener {
 
     private List<Fragment> mList; //ViewPager的数据源
     private ViewPager viewPager;

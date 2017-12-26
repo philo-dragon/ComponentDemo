@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.pfl.common.base.BaseActivity;
 import com.pfl.common.utils.AppManager;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.component.R;
@@ -16,8 +17,7 @@ import com.pfl.component.ui.activity.MainActivity;
 import cn.bingoogolapple.bgabanner.BGABanner;
 
 @Route(path = RouteUtils.APP_WELCOME_ACTIVITY)
-public class WelcomeActivity extends AppCompatActivity {
-    private static final String TAG = WelcomeActivity.class.getSimpleName();
+public class WelcomeActivity extends BaseActivity {
     private BGABanner mBackgroundBanner;
     private BGABanner mForegroundBanner;
 

@@ -9,11 +9,12 @@ import android.view.animation.Animation;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.pfl.common.base.BaseActivity;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.component.R;
 
 @Route(path = RouteUtils.APP_SPLASH_ACTIVITY)
-public class SplashActivity extends Activity {
+public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
