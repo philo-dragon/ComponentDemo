@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.pfl.common.utils.RouteUtils;
 import com.pfl.component.R;
 import com.pfl.component.ui.activity.MainActivity;
 
 import cn.bingoogolapple.bgabanner.BGABanner;
 
+@Route(path = RouteUtils.APP_WELCOME_ACTIVITY)
 public class WelcomeActivity extends AppCompatActivity {
     private static final String TAG = WelcomeActivity.class.getSimpleName();
     private BGABanner mBackgroundBanner;
@@ -39,7 +43,7 @@ public class WelcomeActivity extends AppCompatActivity {
         mForegroundBanner.setEnterSkipViewIdAndDelegate(R.id.btn_guide_enter, R.id.tv_guide_skip, new BGABanner.GuideDelegate() {
             @Override
             public void onClickEnterOrSkip() {
-                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                RouteUtils.actionStart(RouteUtils.APP_MAIN_ACTIVITY);
                 finish();
             }
         });

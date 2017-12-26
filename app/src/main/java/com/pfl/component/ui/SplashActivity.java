@@ -6,15 +6,19 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.pfl.common.utils.RouteUtils;
 import com.pfl.component.R;
 
+@Route(path = RouteUtils.APP_SPLASH_ACTIVITY)
 public class SplashActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
+        RouteUtils.actionStart(RouteUtils.APP_WELCOME_ACTIVITY);
         finish();
         overridePendingTransition(R.anim.alpha_enter, R.anim.alpha_exit);
     }
