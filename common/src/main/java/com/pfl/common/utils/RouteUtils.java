@@ -73,5 +73,34 @@ public class RouteUtils {
         build.navigation();
     }
 
+    /**
+     * 启动Activity
+     * enterId 进入动画
+     * exitId 退出动画
+     *
+     * @param path
+     */
+    public static void actionStart(String path, int enterId, int exitId) {
+        actionStart(path, new HashMap<String, String>(), enterId, exitId);
+    }
+
+    /**
+     * 启动Activity
+     * parameters 携带参数
+     * enterId 进入动画
+     * exitId 退出动画
+     *
+     * @param path
+     */
+    public static void actionStart(String path, Map<String, String> parameters, int enterId, int exitId) {
+        Postcard build = ARouter.getInstance().build(path);
+
+        for (Map.Entry<String, String> stringStringEntry : parameters.entrySet()) {
+            build.withString(stringStringEntry.getKey(), stringStringEntry.getValue());
+        }
+        build.withTransition(enterId, exitId);
+        build.navigation();
+    }
+
 
 }

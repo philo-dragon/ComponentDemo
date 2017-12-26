@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.pfl.common.utils.AppManager;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.component.R;
 import com.pfl.component.ui.activity.MainActivity;
@@ -44,7 +46,8 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClickEnterOrSkip() {
                 RouteUtils.actionStart(RouteUtils.APP_MAIN_ACTIVITY);
-                finish();
+                AppManager.getAppManager().finishActivity();
+                AppManager.getAppManager().finishActivity();
             }
         });
     }
@@ -62,6 +65,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // 如果开发者的引导页主题是透明的，需要在界面可见时给背景 Banner 设置一个白色背景，避免滑动过程中两个 Banner 都设置透明度后能看到 Launcher
         mBackgroundBanner.setBackgroundResource(android.R.color.white);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        return false;
     }
 }
 

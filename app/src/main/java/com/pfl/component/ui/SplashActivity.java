@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.animation.Animation;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -18,8 +19,12 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        RouteUtils.actionStart(RouteUtils.APP_WELCOME_ACTIVITY);
-        finish();
-        overridePendingTransition(R.anim.alpha_enter, R.anim.alpha_exit);
+        RouteUtils.actionStart(RouteUtils.APP_WELCOME_ACTIVITY, R.anim.alpha_enter, R.anim.alpha_exit);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        return false;
     }
 }
