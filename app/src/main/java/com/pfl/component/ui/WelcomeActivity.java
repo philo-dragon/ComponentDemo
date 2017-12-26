@@ -1,6 +1,7 @@
 package com.pfl.component.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import android.view.KeyEvent;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.pfl.common.base.BaseActivity;
 import com.pfl.common.utils.AppManager;
 import com.pfl.common.utils.RouteUtils;
@@ -45,8 +48,10 @@ public class WelcomeActivity extends BaseActivity {
         mForegroundBanner.setEnterSkipViewIdAndDelegate(R.id.btn_guide_enter, R.id.tv_guide_skip, new BGABanner.GuideDelegate() {
             @Override
             public void onClickEnterOrSkip() {
-                RouteUtils.actionStart(RouteUtils.APP_MAIN_ACTIVITY);
-                AppManager.getAppManager().finishActivity();
+                // Activity使用ARouter启动另一个Activity 并finish掉自己会有闪烁问题
+                //RouteUtils.actionStart(RouteUtils.APP_MAIN_ACTIVITY, R.anim.alpha_enter, R.anim.alpha_exit);
+                MainActivity.actionStart(WelcomeActivity.this);
+                SPUtils.getInstance().put("isWelcome", true);
                 AppManager.getAppManager().finishActivity();
             }
         });
@@ -71,6 +76,10 @@ public class WelcomeActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         return false;
+    }
+
+    public static void actionStart(Context context) {
+        context.startActivity(new Intent(context, WelcomeActivity.class));
     }
 }
 

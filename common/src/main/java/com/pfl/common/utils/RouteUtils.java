@@ -1,5 +1,7 @@
 package com.pfl.common.utils;
 
+import android.support.v4.app.Fragment;
+
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.launcher.ARouter;
 
@@ -47,6 +49,7 @@ public class RouteUtils {
     /** ===================================================================================================================================  **/
 
 
+    /** ====================== 启动Activity不带动画 ============================= **/
     /**
      * 启动Activity
      *
@@ -72,6 +75,9 @@ public class RouteUtils {
 
         build.navigation();
     }
+
+
+    /** ====================== 启动Activity带有动画 ============================= **/
 
     /**
      * 启动Activity
@@ -103,4 +109,36 @@ public class RouteUtils {
     }
 
 
+    /** ====================== 获取Fragment ============================= **/
+
+    /**
+     * 启动Activity
+     *
+     * @param path
+     */
+    public static Fragment newFragment(String path) {
+        return newFragment(path, new HashMap<String, String>());
+    }
+
+
+    /**
+     * 启动Activity
+     * parameters 携带参数
+     *
+     * @param path
+     */
+    public static Fragment newFragment(String path, Map<String, String> parameters) {
+        Postcard build = ARouter.getInstance().build(path);
+
+        for (Map.Entry<String, String> stringStringEntry : parameters.entrySet()) {
+            build.withString(stringStringEntry.getKey(), stringStringEntry.getValue());
+        }
+
+        Object navigation = build.navigation();
+        if (!(navigation instanceof Fragment)) {
+            throw new RuntimeException("path is not Fragment");
+        }
+
+        return (Fragment) navigation;
+    }
 }

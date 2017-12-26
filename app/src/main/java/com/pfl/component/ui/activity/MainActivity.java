@@ -1,5 +1,7 @@
 package com.pfl.component.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +18,7 @@ import com.pfl.common.base.BaseActivity;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.common.utils.StatusBarModelUtils;
 import com.pfl.component.R;
+import com.pfl.component.ui.WelcomeActivity;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -100,10 +103,10 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
         mList = new ArrayList<>();
 
-        mList.add((Fragment) ARouter.getInstance().build(RouteUtils.APP_HOME_FRAGMENT).navigation());
-        mList.add((Fragment) ARouter.getInstance().build(RouteUtils.MODULE1_FRAGMENT).navigation());
-        mList.add((Fragment) ARouter.getInstance().build(RouteUtils.MODULE2_FRAGMENT).navigation());
-        mList.add((Fragment) ARouter.getInstance().build(RouteUtils.MODULE_USER_FRAGMENT).navigation());
+        mList.add(RouteUtils.newFragment(RouteUtils.APP_HOME_FRAGMENT));
+        mList.add(RouteUtils.newFragment(RouteUtils.MODULE1_FRAGMENT));
+        mList.add(RouteUtils.newFragment(RouteUtils.MODULE2_FRAGMENT));
+        mList.add(RouteUtils.newFragment(RouteUtils.MODULE_USER_FRAGMENT));
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         viewPager.addOnPageChangeListener(this);
@@ -153,6 +156,10 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    public static void actionStart(Context context) {
+        context.startActivity(new Intent(context, MainActivity.class));
     }
 
 }
