@@ -3,7 +3,7 @@ package com.pfl.common.base;
 import android.app.Application;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.pfl.common.BuildConfig;
+import com.pfl.component.BuildConfig;
 
 /**
  * Created by Administrator on 2017/12/14 0014.

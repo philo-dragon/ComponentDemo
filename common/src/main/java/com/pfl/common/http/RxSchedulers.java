@@ -28,11 +28,7 @@ public class RxSchedulers {
                             @Override
                             public void accept(Disposable disposable) throws Exception {
                                 // 没有网络
-<<<<<<< HEAD
-                                if (!NetworkUtils.isConnected() /*&& !NetworkUtils.isAvailableByPing()*/) {
-=======
                                 if (!NetworkUtils.isConnected() /*&& NetworkUtils.isAvailableByPing()*/) {
->>>>>>> 7d7893acf31360faf4c592f19a24608ff43a6253
                                     throw new NoNetworkException();
                                 }
                             }
