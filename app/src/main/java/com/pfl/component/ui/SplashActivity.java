@@ -24,7 +24,6 @@ public class SplashActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
         return false;
     }
 }
