@@ -1,4 +1,4 @@
-package com.pfl.common.weidegt;
+package com.pfl.common.weidget;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

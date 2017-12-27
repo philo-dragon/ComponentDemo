@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="com.pfl.component.ui.activity.MainActivity">
 
-    <com.pfl.common.weidegt.NoScrollViewPager
+    <com.pfl.common.weidget.NoScrollViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"

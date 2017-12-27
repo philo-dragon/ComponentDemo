@@ -24,20 +24,6 @@ public class BaseApplication extends Application {
         registerLifecycleCallbacks();
     }
 
-    /**
-     * 如果你使用了LayoutInflater.from(getApplicationContext())或者LayoutInflater.from(getApplication())
-     * 就需要以下操作，如果没有，以下方法不必重写
-     */
-    @Override
-    protected void attachBaseContext(Context base) {
-        //替换Inflater
-        super.attachBaseContext(InflaterAuto.wrap(base));
-    }
-
-    private void initUI(){
-
-    }
-
     private void initRouter(Application application) {
 
         if (BuildConfig.DEBUG) {
