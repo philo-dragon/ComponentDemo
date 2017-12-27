@@ -13,6 +13,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.pfl.common.base.BaseActivity;
 import com.pfl.common.utils.RouteUtils;
+import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.component.R;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContextView());
+        StatusBarUtil.darkMode(this, true);
         initView();
         setListener();
         processLogic();
@@ -152,9 +154,26 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     public void onPageSelected(int position) {
-        //ViewPager滑动
-        bottomNavigationBar.selectTab(position);
 
+        goToPosition(position);
+
+    }
+
+    private void goToPosition(int position) {
+        switch (position) {
+            case 0:
+                StatusBarUtil.darkMode(this, true);
+                break;
+            case 1:
+                StatusBarUtil.darkMode(this, false);
+                break;
+            case 2:
+                StatusBarUtil.darkMode(this, false);
+                break;
+            case 3:
+                StatusBarUtil.darkMode(this, true);
+                break;
+        }
     }
 
     @Override

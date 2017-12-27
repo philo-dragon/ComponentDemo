@@ -14,6 +14,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.pfl.common.base.BaseActivity;
 import com.pfl.common.utils.AppManager;
 import com.pfl.common.utils.RouteUtils;
+import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.component.R;
 import com.pfl.component.ui.activity.MainActivity;
 
@@ -26,8 +27,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        StatusBarUtil.immersive(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        StatusBarUtil.setMargin(this, findViewById(R.id.tv_guide_skip));
         initView();
         setListener();
         processLogic();
