@@ -2,12 +2,14 @@ package com.pfl.common.base;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.pfl.common.utils.AppManager;
 import com.pfl.component.BuildConfig;
+import com.yan.inflaterauto.InflaterAuto;
 
 /**
  * Created by Administrator on 2017/12/14 0014.
@@ -20,6 +22,20 @@ public class BaseApplication extends Application {
         super.onCreate();
         initRouter(this);
         registerLifecycleCallbacks();
+    }
+
+    /**
+     * 如果你使用了LayoutInflater.from(getApplicationContext())或者LayoutInflater.from(getApplication())
+     * 就需要以下操作，如果没有，以下方法不必重写
+     */
+    @Override
+    protected void attachBaseContext(Context base) {
+        //替换Inflater
+        super.attachBaseContext(InflaterAuto.wrap(base));
+    }
+
+    private void initUI(){
+
     }
 
     private void initRouter(Application application) {
@@ -72,4 +88,6 @@ public class BaseApplication extends Application {
             });
         }
     }
+
 }
+

@@ -12,8 +12,11 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.pfl.common.entity.module_user.UserInfo;
 import com.pfl.common.service.ModuleUserRouteService;
 import com.pfl.common.utils.RouteUtils;
-import com.pfl.common.utils.StatusBarModelUtils;
+import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.component.R;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,9 +37,27 @@ public class HomeFragment extends Fragment {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StatusBarModelUtils.setStatusBarDarkMode(getActivity(), true);
+                StatusBarUtil.darkMode(getActivity(), true);
             }
         });
+
+        StatusBarUtil.setPadding(getActivity(), view.findViewById(R.id.toolbar));
+
+        RefreshLayout refreshLayout = view.findViewById(R.id.refreshLayout);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                refreshlayout.finishRefresh(2000);
+            }
+        });
+        refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                refreshlayout.finishLoadmore(2000);
+            }
+        });
+
+
         return view;
     }
 

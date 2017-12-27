@@ -1,7 +1,5 @@
 package com.pfl.module2.ui.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,15 +13,13 @@ import com.pfl.common.entity.base.AccessToken;
 import com.pfl.common.entity.base.HttpResponse;
 import com.pfl.common.exception.ApiException;
 import com.pfl.common.http.RetrofitFactory;
-import com.pfl.common.http.RetrofitService;
 import com.pfl.common.http.RxSchedulers;
 import com.pfl.common.utils.RouteUtils;
-import com.pfl.common.utils.StatusBarModelUtils;
+import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.component.R;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +39,7 @@ public class Module2Fragment extends Fragment {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StatusBarModelUtils.setStatusBarDarkMode(getActivity(), false);
+                StatusBarUtil.darkMode(getActivity(), false);
             }
         });
 

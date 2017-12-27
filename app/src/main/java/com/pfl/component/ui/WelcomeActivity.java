@@ -20,7 +20,7 @@ import com.pfl.component.ui.activity.MainActivity;
 import cn.bingoogolapple.bgabanner.BGABanner;
 
 @Route(path = RouteUtils.APP_WELCOME_ACTIVITY)
-public class WelcomeActivity extends BaseActivity {
+public class WelcomeActivity extends AppCompatActivity {
     private BGABanner mBackgroundBanner;
     private BGABanner mForegroundBanner;
 

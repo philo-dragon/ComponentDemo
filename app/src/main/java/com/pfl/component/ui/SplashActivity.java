@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.animation.Animation;
@@ -19,7 +20,7 @@ import com.pfl.component.R;
 import com.pfl.component.ui.activity.MainActivity;
 
 @Route(path = RouteUtils.APP_SPLASH_ACTIVITY)
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

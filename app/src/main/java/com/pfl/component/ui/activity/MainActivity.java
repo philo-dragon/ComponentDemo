@@ -6,21 +6,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.pfl.common.base.BaseActivity;
 import com.pfl.common.utils.RouteUtils;
-import com.pfl.common.utils.StatusBarModelUtils;
 import com.pfl.component.R;
-import com.pfl.component.ui.WelcomeActivity;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,15 +30,25 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(getContextView());
         initView();
         setListener();
         processLogic();
     }
 
+    @Override
+    protected int getContextView() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected boolean isNeedTitleBar() {
+        return false;
+    }
+
     private void initView() {
 
-        bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
+        bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar.setTabSelectedListener(this);
         //设置被选中时隐藏角标
         badgeItem = new BadgeItem()
@@ -81,7 +85,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         //设置导航条背景颜色
         //在BACKGROUND_STYLE_STATIC下，表示整个容器的背景色。
         // 而在BACKGROUND_STYLE_RIPPLE下，表示选中Item的图标和文本颜色。默认 Color.WHITE
-        bottomNavigationBar.setBarBackgroundColor(R.color.black);
+        bottomNavigationBar.setBarBackgroundColor(R.color.black_22);
         //选中时的颜色,在BACKGROUND_STYLE_STATIC下，表示选中Item的图标和文本颜色。
         // 而在BACKGROUND_STYLE_RIPPLE下，表示整个容器的背景色。默认Theme's Primary Color
         //bottomNavigationBar.setActiveColor(R.color.black);
@@ -108,7 +112,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         mList.add(RouteUtils.newFragment(RouteUtils.MODULE2_FRAGMENT));
         mList.add(RouteUtils.newFragment(RouteUtils.MODULE_USER_FRAGMENT));
 
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.viewPager);
         viewPager.addOnPageChangeListener(this);
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager(), mList);
         viewPager.setAdapter(mainAdapter); //视图加载适配器
