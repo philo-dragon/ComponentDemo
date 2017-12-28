@@ -9,6 +9,6 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = {NetworkModule.class})
+@Component(modules = {NetworkModule.class,AppModule.class})
 public interface AppComponent {
 }
