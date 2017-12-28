@@ -63,7 +63,7 @@ public class RetrofitFactory {
         return INSTANCE;
     }
 
-    //网络拦截器：主要用于重试或重写
+    //网络拦截器：失败重连 3 次
     private static Interceptor netIntercepter = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {

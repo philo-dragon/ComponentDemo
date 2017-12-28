@@ -16,14 +16,18 @@ ext {
             constraint         : "1.0.2",
             retrofit           : "2.10",
             arouter            : "1.2.4",
-            aroutercompiler    : "1.1.4",
+            arouter_compiler   : "1.1.4",
             arouterAnnotation  : "1.0.4",
             bottomNavigationBar: "1.4.1",
+
+            dagger             : "2.14.1",
+            dagger_compiler    : "2.14.1",
 
             rxjava             : "2.1.6",
             rxandroid          : "2.0.1",
             retrofit           : "2.3.0",
             converter_gson     : "2.3.0",
+            converter_scalars  : "2.3.0",
             adapter_rxjava2    : "2.3.0",
             rxlifecycle        : "2.1.0",
 
@@ -41,16 +45,20 @@ ext {
 
     deps = [
 
-            //Android Support
+            // Android Support
             design               : "com.android.support:design:${depsVersion.support}",
             supportV4            : "com.android.support:support-v4:${depsVersion.support}",
             appcompatV7          : "com.android.support:appcompat-v7:${depsVersion.support}",
             recyclerviewV7       : "com.android.support:recyclerview-v7:${depsVersion.support}",
             constraint           : "com.android.support.constraint:constraint-layout:${depsVersion.constraint}",
 
+            // Dagger2
+            dagger               : "com.google.dagger:dagger:${depsVersion.dagger}",
+            dagger_compiler      : "com.google.dagger:dagger-compiler:${depsVersion.dagger_compiler}",
+
             // 第三方开源库
             arouter              : "com.alibaba:arouter-api:${depsVersion.arouter}",
-            processor            : "com.alibaba:arouter-compiler:${depsVersion.aroutercompiler}",
+            arouter_compiler     : "com.alibaba:arouter-compiler:${depsVersion.arouter_compiler}",
             annotation           : "com.alibaba:arouter-annotation:${depsVersion.arouterAnnotation}",
             bottomNavigationBar  : "com.ashokvarma.android:bottom-navigation-bar:${depsVersion.bottomNavigationBar}",
 
@@ -58,6 +66,7 @@ ext {
             rxandroid            : "io.reactivex.rxjava2:rxandroid:${depsVersion.rxandroid}",
             retrofit             : "com.squareup.retrofit2:retrofit:${depsVersion.retrofit}",
             converter_gson       : "com.squareup.retrofit2:converter-gson:${depsVersion.converter_gson}",
+            converter_scalars    : "com.squareup.retrofit2:converter-scalars:${depsVersion.converter_scalars}",
             adapter_rxjava2      : "com.squareup.retrofit2:adapter-rxjava2:${depsVersion.adapter_rxjava2}",
             rxlifecycle          : "com.trello.rxlifecycle2:rxlifecycle-components:${depsVersion.rxlifecycle}",
 

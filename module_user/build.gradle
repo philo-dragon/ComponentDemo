@@ -61,5 +61,6 @@ dependencies {
     api project(':common')
 
     // ARouter 配置 3
-    annotationProcessor rootProject.ext.deps.processor
+    annotationProcessor rootProject.ext.deps.arouter_compiler
+    annotationProcessor rootProject.ext.deps.dagger_compiler
 }
