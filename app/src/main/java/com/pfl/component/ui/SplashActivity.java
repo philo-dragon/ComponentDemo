@@ -25,7 +25,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ToastUtils.setGravity(Gravity.CENTER, 0, 0);
         if (!SPUtils.getInstance().getBoolean("isWelcome", false)) {
             // Activity使用ARouter启动另一个Activity 并finish掉自己会有闪烁问题
             //RouteUtils.actionStart(RouteUtils.APP_WELCOME_ACTIVITY, R.anim.alpha_enter, R.anim.alpha_exit);

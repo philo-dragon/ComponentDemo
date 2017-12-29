@@ -3,7 +3,6 @@ package com.pfl.component.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
@@ -12,9 +11,12 @@ import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.pfl.common.base.BaseActivity;
+import com.pfl.common.di.AppComponent;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.component.R;
+import com.pfl.component.di.main.DaggerMainComponent;
+import com.pfl.component.di.main.MainModule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,28 +29,30 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     private BottomNavigationBar bottomNavigationBar;
     private BadgeItem badgeItem;
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getContextView());
-        StatusBarUtil.darkMode(this, true);
-        initView();
-        setListener();
-        processLogic();
-    }
-
     @Override
     protected int getContextView() {
         return R.layout.activity_main;
     }
 
     @Override
-    protected boolean isNeedTitleBar() {
+    protected boolean isNeedToolBar() {
         return false;
     }
 
-    private void initView() {
+    @Override
+    protected void componentInject(AppComponent appComponent) {
+        DaggerMainComponent
+                .builder()
+                .appComponent(appComponent)
+                .mainModule(new MainModule())
+                .build()
+                .inject(this);
+    }
+
+    @Override
+    protected void initView() {
+
+        StatusBarUtil.darkMode(this, true);
 
         bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar.setTabSelectedListener(this);
@@ -122,11 +126,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     }
 
-    private void setListener() {
+    @Override
+    protected void initEvent() {
 
-    }
-
-    private void processLogic() {
     }
 
 

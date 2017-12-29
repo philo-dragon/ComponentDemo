@@ -7,6 +7,10 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.pfl.common.di.AppComponent;
+import com.pfl.common.di.AppModule;
+import com.pfl.common.di.DaggerAppComponent;
+import com.pfl.common.di.NetworkModule;
 import com.pfl.common.utils.AppManager;
 import com.pfl.component.BuildConfig;
 import com.yan.inflaterauto.InflaterAuto;
@@ -17,11 +21,31 @@ import com.yan.inflaterauto.InflaterAuto;
 
 public class BaseApplication extends Application {
 
+    private AppComponent appComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
         initRouter(this);
         registerLifecycleCallbacks();
+
+        initAppComponent();
+    }
+
+    private void initAppComponent() {
+
+        if (appComponent == null) {
+            appComponent = DaggerAppComponent.builder()
+                    .appModule(new AppModule(this))
+                    .networkModule(new NetworkModule())
+                    .build();
+        }
+
+    }
+
+    public AppComponent getAppComponent() {
+        initAppComponent();
+        return appComponent;
     }
 
     private void initRouter(Application application) {

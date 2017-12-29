@@ -17,8 +17,8 @@
         android:drawableLeft="@drawable/ic_navigate_before_black_24dp"
         android:gravity="center"
         android:text="返回"
-        android:textColor="#555555"
-        android:textSize="16sp" />
+        android:textColor="#5dadf7"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/center_title"
@@ -40,7 +40,7 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:text="MENU"
-        android:textColor="#555555"
-        android:textSize="16sp" />
+        android:textColor="#5dadf7"
+        android:textSize="14sp" />
 
 </android.support.v7.widget.Toolbar>

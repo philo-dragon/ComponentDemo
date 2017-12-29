@@ -9,7 +9,7 @@ import com.pfl.module_user.constant.UserInfoManager;
  * Created by Administrator on 2017/12/16 0016.
  */
 
-public class App extends BaseApplication {
+public class ComponentApplication extends BaseApplication {
 
     @Override
     public void onCreate() {
