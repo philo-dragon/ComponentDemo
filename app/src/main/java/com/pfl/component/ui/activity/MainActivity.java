@@ -15,6 +15,7 @@ import com.pfl.common.di.AppComponent;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.component.R;
+//import com.pfl.component.di.main.DaggerMainComponent;
 import com.pfl.component.di.main.DaggerMainComponent;
 import com.pfl.component.di.main.MainModule;
 
@@ -41,12 +42,12 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     protected void componentInject(AppComponent appComponent) {
-        DaggerMainComponent
+       /*DaggerMainComponent
                 .builder()
                 .appComponent(appComponent)
                 .mainModule(new MainModule())
                 .build()
-                .inject(this);
+                .inject(this);*/
     }
 
     @Override
