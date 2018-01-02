@@ -31,7 +31,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(getContextView(), container, false);
+        View view = inflater.inflate(R.layout.base_layout, container, false);
 
         if (isNeedToolBar()) {
             ViewStub titleStub = view.findViewById(R.id.titleStub);

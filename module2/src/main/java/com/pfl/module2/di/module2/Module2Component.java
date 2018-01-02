@@ -7,11 +7,11 @@ import com.pfl.module2.ui.fragment.Module2Fragment;
 import dagger.Component;
 
 /**
- * Created by Administrator on 2017/12/30 0030.
+ * Created by rocky on 2018/1/2.
  */
 
 @FragmentScope
-@Component(modules = Module2Module.class, dependencies = AppComponent.class)
+@Component(dependencies = AppComponent.class, modules = Module2Module.class)
 public interface Module2Component {
 
     void inject(Module2Fragment fragment);

@@ -3,7 +3,7 @@ package com.pfl.module2.di.module2;
 import dagger.Module;
 
 /**
- * Created by Administrator on 2017/12/30 0030.
+ * Created by rocky on 2018/1/2.
  */
 
 @Module

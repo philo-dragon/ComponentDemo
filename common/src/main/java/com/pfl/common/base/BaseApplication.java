@@ -12,6 +12,7 @@ import com.pfl.common.di.AppModule;
 import com.pfl.common.di.DaggerAppComponent;
 import com.pfl.common.di.NetworkModule;
 import com.pfl.common.utils.AppManager;
+import com.pfl.common.utils.BaseUrlManager;
 import com.pfl.component.BuildConfig;
 import com.yan.inflaterauto.InflaterAuto;
 
@@ -26,6 +27,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        BaseUrlManager.init("http://apitest.topzuqiu.cn/", "http://apitest.topzuqiu.cn/", false);
         initRouter(this);
         registerLifecycleCallbacks();
 

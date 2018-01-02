@@ -1,5 +1,6 @@
 package com.pfl.component.ui.activity;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,12 +16,15 @@ import com.pfl.common.di.AppComponent;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.component.R;
-//import com.pfl.component.di.main.DaggerMainComponent;
 import com.pfl.component.di.main.DaggerMainComponent;
-import com.pfl.component.di.main.MainModule;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
+
+import retrofit2.Retrofit;
+
 
 @Route(path = RouteUtils.APP_MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener, ViewPager.OnPageChangeListener {
@@ -29,6 +33,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     private ViewPager viewPager;
     private BottomNavigationBar bottomNavigationBar;
     private BadgeItem badgeItem;
+
 
     @Override
     protected int getContextView() {

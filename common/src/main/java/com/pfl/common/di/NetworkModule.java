@@ -80,7 +80,7 @@ public class NetworkModule {
         return retrofit;
     }
 
-    @Provides
+   @Provides
     @Singleton
     RetrofitService provideRetrofitService(Retrofit retrofit) {
         return retrofit.create(RetrofitService.class);

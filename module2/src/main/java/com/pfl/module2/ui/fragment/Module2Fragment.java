@@ -1,10 +1,7 @@
 package com.pfl.module2.ui.fragment;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -27,6 +24,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import retrofit2.Retrofit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,10 +36,9 @@ public class Module2Fragment extends BaseFragment {
 
     @Inject
     RetrofitService service;
-
     private void requestData() {
-
-        service.getToken("client_credentials", "282307895618", "b9c6c8f954dbbf7274910585a95efce1")
+        service
+                .getToken("client_credentials", "282307895618", "b9c6c8f954dbbf7274910585a95efce1")
                 .compose(RxSchedulers.<HttpResponse<AccessToken>>compose())
                 .subscribe(new Observer<HttpResponse<AccessToken>>() {
                     @Override
@@ -74,7 +71,8 @@ public class Module2Fragment extends BaseFragment {
 
     @Override
     protected void componentInject(AppComponent appComponent) {
-        DaggerModule2Component.builder().appComponent(appComponent)
+        DaggerModule2Component.builder()
+                .appComponent(appComponent)
                 .module2Module(new Module2Module())
                 .build()
                 .inject(this);
