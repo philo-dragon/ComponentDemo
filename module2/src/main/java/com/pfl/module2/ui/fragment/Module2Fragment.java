@@ -11,7 +11,6 @@ import com.pfl.common.di.AppComponent;
 import com.pfl.common.entity.base.AccessToken;
 import com.pfl.common.entity.base.HttpResponse;
 import com.pfl.common.exception.ApiException;
-import com.pfl.common.http.RetrofitFactory;
 import com.pfl.common.http.RetrofitService;
 import com.pfl.common.http.RxSchedulers;
 import com.pfl.common.utils.RouteUtils;
@@ -24,7 +23,6 @@ import javax.inject.Inject;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import retrofit2.Retrofit;
 
 /**
  * A simple {@link Fragment} subclass.
