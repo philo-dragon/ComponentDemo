@@ -18,6 +18,8 @@ import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.component.R;
 import com.pfl.module2.di.module2.DaggerModule2Component;
 import com.pfl.module2.di.module2.Module2Module;
+import com.pfl.module2.mvp.module2.Module2Persenter;
+import com.pfl.module2.mvp.module2.Module2View;
 
 import javax.inject.Inject;
 
@@ -28,50 +30,22 @@ import io.reactivex.disposables.Disposable;
  * A simple {@link Fragment} subclass.
  */
 @Route(path = RouteUtils.MODULE2_FRAGMENT)
-public class Module2Fragment extends BaseFragment {
+public class Module2Fragment extends BaseFragment implements Module2View {
 
     private TextView textView;
 
     @Inject
-    RetrofitService service;
+    Module2Persenter persenter;
+
     private void requestData() {
-        service
-                .getToken("client_credentials", "282307895618", "b9c6c8f954dbbf7274910585a95efce1")
-                .compose(RxSchedulers.<HttpResponse<AccessToken>>compose())
-                .subscribe(new Observer<HttpResponse<AccessToken>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(HttpResponse<AccessToken> accessTokenHttpResponse) {
-
-                        if (accessTokenHttpResponse.isSuccess()) {
-                            textView.setText(accessTokenHttpResponse.getData().getAccess_token());
-                        } else {
-                            onError(new ApiException(accessTokenHttpResponse.getCode(), accessTokenHttpResponse.getMsg()));
-                        }
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        ToastUtils.showShort(e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+        persenter.requestData();
     }
 
     @Override
     protected void componentInject(AppComponent appComponent) {
         DaggerModule2Component.builder()
                 .appComponent(appComponent)
-                .module2Module(new Module2Module())
+                .module2Module(new Module2Module(this))
                 .build()
                 .inject(this);
     }
@@ -100,5 +74,10 @@ public class Module2Fragment extends BaseFragment {
                 StatusBarUtil.darkMode(mContext, false);
             }
         });
+    }
+
+    @Override
+    public void onSuccess(String token) {
+        textView.setText(token);
     }
 }
