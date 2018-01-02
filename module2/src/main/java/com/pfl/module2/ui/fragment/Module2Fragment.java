@@ -5,14 +5,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.blankj.utilcode.util.ToastUtils;
 import com.pfl.common.base.BaseFragment;
 import com.pfl.common.di.AppComponent;
-import com.pfl.common.entity.base.AccessToken;
-import com.pfl.common.entity.base.HttpResponse;
-import com.pfl.common.exception.ApiException;
-import com.pfl.common.http.RetrofitService;
-import com.pfl.common.http.RxSchedulers;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.component.R;
@@ -22,9 +16,6 @@ import com.pfl.module2.mvp.module2.Module2Persenter;
 import com.pfl.module2.mvp.module2.Module2View;
 
 import javax.inject.Inject;
-
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 
 /**
  * A simple {@link Fragment} subclass.
