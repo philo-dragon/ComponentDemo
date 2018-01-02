@@ -45,7 +45,7 @@ public class Module2Fragment extends BaseFragment implements Module2View {
     protected void componentInject(AppComponent appComponent) {
         DaggerModule2Component.builder()
                 .appComponent(appComponent)
-                .module2Module(new Module2Module(this))
+                .module2Module(new Module2Module(this, this))
                 .build()
                 .inject(this);
     }

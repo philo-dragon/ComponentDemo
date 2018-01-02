@@ -3,6 +3,7 @@ package com.pfl.module2.di.module2;
 import com.pfl.common.http.RetrofitService;
 import com.pfl.module2.mvp.module2.Module2Persenter;
 import com.pfl.module2.mvp.module2.Module2View;
+import com.trello.rxlifecycle2.LifecycleProvider;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,9 +15,11 @@ import dagger.Provides;
 @Module
 public class Module2Module {
 
+    private LifecycleProvider lifecycle;
     private Module2View view;
 
-    public Module2Module(Module2View module2View) {
+    public Module2Module(LifecycleProvider lifecycle, Module2View module2View) {
+        this.lifecycle = lifecycle;
         this.view = module2View;
     }
 
@@ -25,10 +28,15 @@ public class Module2Module {
         return view;
     }
 
-   @Provides
-    Module2Persenter provideModule2Persenter(RetrofitService service, Module2View view) {
+    @Provides
+    LifecycleProvider provideLifecycleProvider() {
+        return lifecycle;
+    }
 
-        return new Module2Persenter(service, view);
+    @Provides
+    Module2Persenter provideModule2Persenter(LifecycleProvider lifecycle, RetrofitService service, Module2View view) {
+
+        return new Module2Persenter(lifecycle, service, view);
     }
 
 }

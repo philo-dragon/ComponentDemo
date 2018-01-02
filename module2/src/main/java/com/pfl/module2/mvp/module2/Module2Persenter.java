@@ -6,6 +6,10 @@ import com.pfl.common.entity.base.HttpResponse;
 import com.pfl.common.exception.ApiException;
 import com.pfl.common.http.RetrofitService;
 import com.pfl.common.http.RxSchedulers;
+import com.trello.rxlifecycle2.LifecycleProvider;
+import com.trello.rxlifecycle2.RxLifecycle;
+import com.trello.rxlifecycle2.android.ActivityEvent;
+import com.trello.rxlifecycle2.android.FragmentEvent;
 
 import javax.inject.Inject;
 
@@ -18,11 +22,14 @@ import io.reactivex.disposables.Disposable;
 
 public class Module2Persenter {
 
+    private LifecycleProvider lifecycle;
     private RetrofitService service;
     private Module2View view;
 
+
     @Inject
-    public Module2Persenter(RetrofitService service, Module2View view) {
+    public Module2Persenter(LifecycleProvider lifecycle, RetrofitService service, Module2View view) {
+        this.lifecycle = lifecycle;
         this.service = service;
         this.view = view;
     }
@@ -31,6 +38,7 @@ public class Module2Persenter {
     public void requestData() {
         service.getToken("client_credentials", "282307895618", "b9c6c8f954dbbf7274910585a95efce1")
                 .compose(RxSchedulers.<HttpResponse<AccessToken>>compose())
+                .compose(lifecycle.bindUntilEvent(FragmentEvent.DESTROY))
                 .subscribe(new Observer<HttpResponse<AccessToken>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
