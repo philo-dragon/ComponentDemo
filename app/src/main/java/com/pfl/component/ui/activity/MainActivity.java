@@ -126,6 +126,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
         viewPager = findViewById(R.id.viewPager);
         viewPager.addOnPageChangeListener(this);
+        viewPager.setOffscreenPageLimit(mList.size());
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager(), mList);
         viewPager.setAdapter(mainAdapter); //视图加载适配器
 

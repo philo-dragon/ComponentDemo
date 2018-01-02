@@ -6,6 +6,7 @@ import com.pfl.common.entity.base.HttpResponse;
 import com.pfl.common.exception.ApiException;
 import com.pfl.common.http.RetrofitService;
 import com.pfl.common.http.RxSchedulers;
+import com.pfl.common.utils.BaseObserver;
 import com.trello.rxlifecycle2.LifecycleProvider;
 import com.trello.rxlifecycle2.RxLifecycle;
 import com.trello.rxlifecycle2.android.ActivityEvent;
@@ -39,30 +40,15 @@ public class Module2Persenter {
         service.getToken("client_credentials", "282307895618", "b9c6c8f954dbbf7274910585a95efce1")
                 .compose(RxSchedulers.<HttpResponse<AccessToken>>compose())
                 .compose(lifecycle.bindUntilEvent(FragmentEvent.DESTROY))
-                .subscribe(new Observer<HttpResponse<AccessToken>>() {
+                .subscribe(new BaseObserver<HttpResponse<AccessToken>>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
+                    public void onNext(HttpResponse<AccessToken> httpResponse) {
 
-                    }
-
-                    @Override
-                    public void onNext(HttpResponse<AccessToken> accessTokenHttpResponse) {
-
-                        if (accessTokenHttpResponse.isSuccess()) {
-                            view.onSuccess(accessTokenHttpResponse.getData().getAccess_token());
+                        if (httpResponse.isSuccess()) {
+                            view.onSuccess(httpResponse.getData().getAccess_token());
                         } else {
-                            onError(new ApiException(accessTokenHttpResponse.getCode(), accessTokenHttpResponse.getMsg()));
+                            onError(new ApiException(httpResponse.getCode(), httpResponse.getMsg()));
                         }
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        ToastUtils.showShort(e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
 
                     }
                 });
