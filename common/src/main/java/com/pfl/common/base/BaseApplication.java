@@ -5,14 +5,17 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.ToastUtils;
 import com.pfl.common.di.AppComponent;
 import com.pfl.common.di.AppModule;
 import com.pfl.common.di.DaggerAppComponent;
 import com.pfl.common.di.NetworkModule;
 import com.pfl.common.utils.AppManager;
 import com.pfl.common.utils.BaseUrlManager;
+import com.pfl.common.utils.CallBacks;
 import com.pfl.component.BuildConfig;
 import com.yan.inflaterauto.InflaterAuto;
 
@@ -27,11 +30,10 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        BaseUrlManager.init("http://apitest.topzuqiu.cn/", "http://apitest.topzuqiu.cn/", false);
-        initRouter(this);
-        registerLifecycleCallbacks();
-
-        initAppComponent();
+        BaseUrlManager.init("http://apitest.topzuqiu.cn/", "http://apitest.topzuqiu.cn/", false);//动态切换BaseUrl
+        initRouter(this);//初始化Router
+        registerLifecycleCallbacks();//注册Activity生命周期监听
+        initAppComponent();//Dagger2 初始化全局参数
     }
 
     private void initAppComponent() {
@@ -62,35 +64,10 @@ public class BaseApplication extends Application {
 
     public void registerLifecycleCallbacks() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            registerActivityLifecycleCallbacks(new CallBacks() {
                 @Override
                 public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
                     AppManager.getAppManager().addActivity(activity);
-                }
-
-                @Override
-                public void onActivityStarted(Activity activity) {
-
-                }
-
-                @Override
-                public void onActivityResumed(Activity activity) {
-
-                }
-
-                @Override
-                public void onActivityPaused(Activity activity) {
-
-                }
-
-                @Override
-                public void onActivityStopped(Activity activity) {
-
-                }
-
-                @Override
-                public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
                 }
 
                 @Override
