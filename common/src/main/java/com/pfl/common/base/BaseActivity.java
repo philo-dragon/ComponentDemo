@@ -1,69 +1,65 @@
 package com.pfl.common.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
+import android.view.ViewTreeObserver;
+import android.widget.TextView;
 
 import com.pfl.common.di.AppComponent;
+import com.pfl.common.listener.IActivity;
 import com.pfl.common.utils.App;
 import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.component.R;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.yan.inflaterauto.InflaterAuto;
 
-public abstract class BaseActivity extends RxAppCompatActivity {
+public abstract class BaseActivity extends RxAppCompatActivity implements IActivity {
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(InflaterAuto.wrap(base));
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        StatusBarUtil.immersive(this);
         super.onCreate(savedInstanceState);
-        setContextView();
-        componentInject(App.getInstance(BaseApplication.class).getAppComponent());
-
-        initView();
-        initEvent();
+        setContentView(getContextView());
+        getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                StatusBarUtil.immersive(BaseActivity.this);
+                componentInject(App.getInstance(BaseApplication.class).getAppComponent());
+                initToolbar();
+                initView();
+                initEvent();
+                initData();
+            }
+        });
     }
 
-    private void setContextView() {
-        View view = LayoutInflater.from(this).inflate(R.layout.base_layout, null, false);
-        if (isNeedToolBar()) {
-            ViewStub titleStub = view.findViewById(R.id.titleStub);
-            titleStub.inflate();
+    private void initToolbar() {
+        StatusBarUtil.darkMode(this, true);
+        if (findViewById(R.id.toolbar) != null) {
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            StatusBarUtil.setPadding(this, toolbar);
+            toolbar.setTitle("");
+            //setSupportActionBar(toolbar);
+            ((TextView) findViewById(R.id.toolbar_title)).setText(getTitle());
+            //toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
         }
-        ViewStub viewStub = view.findViewById(R.id.viewStub);
-        viewStub.setLayoutResource(getContextView());
-        viewStub.inflate();
-        setContentView(view);
+
     }
 
-    /**
-     * 依赖注入的入口
-     */
-    protected void componentInject(AppComponent appComponent) {
-    }
-
-    /**
-     * layoutId
-     *
-     * @return
-     */
-    protected abstract int getContextView();
-
-    /**
-     * 是否需要ToolBar
-     *
-     * @return
-     */
-    protected abstract boolean isNeedToolBar();
-
-    /**
-     * 初始化view
-     */
-    protected abstract void initView();
-
-    /**
-     * 初始化event
-     */
-    protected abstract void initEvent();
 }

@@ -1,46 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:elevation="1px"
-    android:minHeight="50dp"
     app:contentInsetStart="0dp">
 
     <TextView
-        android:id="@+id/nav_left_text_button"
+        android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_gravity="start|left|center_vertical"
-        android:drawableLeft="@drawable/ic_navigate_before_black_24dp"
-        android:gravity="center"
-        android:text="返回"
-        android:textColor="#5dadf7"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/center_title"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="标题"
-        android:textColor="#555555"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/nav_right_text_button"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_gravity="right|end|center_vertical"
-        android:gravity="center"
-        android:minWidth="50dp"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
-        android:text="MENU"
-        android:textColor="#5dadf7"
-        android:textSize="14sp" />
+        android:minHeight="48dp"
+        android:textColor="#FF000000"
+        android:textSize="18sp"
+        tools:text="标题" />
 
 </android.support.v7.widget.Toolbar>

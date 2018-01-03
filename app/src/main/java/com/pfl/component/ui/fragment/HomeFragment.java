@@ -29,6 +29,8 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment tv_textview
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         TextView textView = view.findViewById(R.id.tv_textview);
+        TextView toolbarTitle = view.findViewById(R.id.toolbar_title);
+        toolbarTitle.setText("HomeFragment");
         UserInfo userInfo = ModuleUserRouteService.getUserInfo();
         if (null != userInfo) {
             textView.setText(userInfo.getName() + " , " + userInfo.getMobileNum());
@@ -37,7 +39,7 @@ public class HomeFragment extends Fragment {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StatusBarUtil.darkMode(getActivity(), true);
+                RouteUtils.actionStart(RouteUtils.MODULE_USER_LOGIN_ACTIVITY);
             }
         });
 

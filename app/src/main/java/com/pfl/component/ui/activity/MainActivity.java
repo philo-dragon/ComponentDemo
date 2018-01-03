@@ -36,17 +36,13 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
 
     @Override
-    protected int getContextView() {
+    public int getContextView() {
         return R.layout.activity_main;
     }
 
-    @Override
-    protected boolean isNeedToolBar() {
-        return false;
-    }
 
     @Override
-    protected void componentInject(AppComponent appComponent) {
+    public void componentInject(AppComponent appComponent) {
        /*DaggerMainComponent
                 .builder()
                 .appComponent(appComponent)
@@ -56,7 +52,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     }
 
     @Override
-    protected void initView() {
+    public void initView() {
 
         StatusBarUtil.darkMode(this, true);
 
@@ -134,10 +130,14 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     }
 
     @Override
-    protected void initEvent() {
+    public void initEvent() {
 
     }
 
+    @Override
+    public void initData() {
+
+    }
 
     @Override
     public void onTabSelected(int position) {//未选中 -> 选中

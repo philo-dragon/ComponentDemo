@@ -23,13 +23,17 @@ public class RouteUtils {
     public static final String APP_WELCOME_ACTIVITY = "/app/welcome";
     public static final String APP_MAIN_ACTIVITY = "/app/main";
 
-    //Fragment
-    public static final String APP_HOME_FRAGMENT = "/app/homeFragment";
-
     /**
      * module_user 模块
      */
-    // module_user
+
+    // Activity
+
+    // Fragment
+    public static final String MODULE_USER_LOGIN_ACTIVITY = "/module_user/login";
+
+    //Fragment
+    public static final String APP_HOME_FRAGMENT = "/app/homeFragment";
     public static final String MODULE_USER_FRAGMENT = "/module_user/userFragment";
     public static final String SERVICE_USER = "/module_user/service_user";
 
