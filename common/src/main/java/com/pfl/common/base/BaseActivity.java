@@ -49,17 +49,19 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
             Toolbar toolbar = findViewById(R.id.toolbar);
             StatusBarUtil.setPadding(this, toolbar);
             toolbar.setTitle("");
-            //setSupportActionBar(toolbar);
             ((TextView) findViewById(R.id.toolbar_title)).setText(getTitle());
-            //toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            findViewById(R.id.toolbar_back).setVisibility(isNeedBack() ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.toolbar_back).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     finish();
                 }
             });
         }
+    }
 
+    public boolean isNeedBack() {
+        return true;
     }
 
 }

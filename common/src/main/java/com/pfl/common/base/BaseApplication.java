@@ -5,27 +5,17 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.blankj.utilcode.util.ToastUtils;
 import com.pfl.common.di.AppComponent;
 import com.pfl.common.di.AppModule;
 import com.pfl.common.di.DaggerAppComponent;
 import com.pfl.common.di.NetworkModule;
-import com.pfl.common.listener.IActivity;
-import com.pfl.common.utils.App;
 import com.pfl.common.utils.AppManager;
 import com.pfl.common.utils.BaseUrlManager;
 import com.pfl.common.utils.CallBacks;
-import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.common.weidget.InfAutoInflaterConvert;
 import com.pfl.component.BuildConfig;
-import com.pfl.component.R;
 import com.yan.inflaterauto.AutoBaseOn;
 import com.yan.inflaterauto.InflaterAuto;
 
