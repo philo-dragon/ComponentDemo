@@ -14,7 +14,24 @@
         android:layout_width="400px"
         android:layout_height="400px"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="200px"
+        android:layout_marginTop="100px"
         android:scaleType="centerCrop" />
+
+    <com.knifestone.hyena.view.edittext.ClearEditText
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="90px"
+        android:hint="用户名"
+        android:maxLines="1" />
+
+    <com.knifestone.hyena.view.edittext.EyesEditText
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:hint="密码"
+        android:maxLines="1" />
 
 </LinearLayout>
