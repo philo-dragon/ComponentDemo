@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.pfl.common.di.AppComponent;
@@ -34,7 +35,9 @@ public class BaseApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(InflaterAuto.wrap(base));
+        MultiDex.install(this);
     }
+
 
     @Override
     public void onCreate() {

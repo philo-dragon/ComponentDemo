@@ -42,6 +42,8 @@ dependencies {
     androidTestApi 'com.android.support.test:runner:0.5'
     androidTestApi 'com.android.support.test.espresso:espresso-core:2.2.2'
 
+    api rootProject.ext.deps.multidex
+
     api rootProject.ext.deps.design
     api rootProject.ext.deps.supportV4
     api rootProject.ext.deps.appcompatV7
@@ -70,6 +72,10 @@ dependencies {
     api rootProject.ext.deps.okhttp
     api rootProject.ext.deps.okio
     api rootProject.ext.deps.logging_interceptor
+
+    // Glide
+    api rootProject.ext.deps.glide
+    annotationProcessor rootProject.ext.deps.glide_processor
 
     // UI适配库
     api rootProject.ext.deps.inflaterauto

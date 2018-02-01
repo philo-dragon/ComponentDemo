@@ -7,7 +7,14 @@
     android:orientation="vertical"
     tools:context="com.pfl.module_user.ui.login.LoginActivity">
 
-    <include layout="@layout/toolbar_layout"/>
+    <include layout="@layout/toolbar_layout" />
 
+    <ImageView
+        android:id="@+id/img_user"
+        android:layout_width="400px"
+        android:layout_height="400px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="200px"
+        android:scaleType="centerCrop" />
 
 </LinearLayout>

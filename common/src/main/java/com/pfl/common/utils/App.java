@@ -29,7 +29,11 @@ public class App {
         }
     }
 
-    public static  <T> T getInstance(Class<T> clazz) {
+    public static Application getInstance() {
+        return INSTANCE;
+    }
+
+    public static <T> T getInstance(Class<T> clazz) {
 
         return (T) INSTANCE;
     }

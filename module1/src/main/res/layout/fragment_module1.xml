@@ -5,18 +5,17 @@
     android:background="@android:color/white"
     tools:context="com.pfl.module1.ui.fragment.Module1Fragment">
 
-    <com.pfl.common.weidget.NestedParentLayout
-        android:layout_width="400px"
-        android:layout_height="400px"
-        android:layout_gravity="center"
-        android:background="#95ff00">
+    <com.pfl.common.test.MyRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <com.pfl.common.weidget.NestedChildView
-            android:layout_width="150px"
-            android:layout_height="150px"
-            android:layout_gravity="center"
-            android:background="#0000ff" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="测试" />
 
-    </com.pfl.common.weidget.NestedParentLayout>
+
+    </com.pfl.common.test.MyRefreshLayout>
 
 </FrameLayout>

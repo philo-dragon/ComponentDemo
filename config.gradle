@@ -1,24 +1,26 @@
 ext {
 
     android = [
-            compileSdkVersion: 26,
-            buildToolsVersion: "26",
+            compileSdkVersion: 27,
+            buildToolsVersion: "27",
             applicationId    : "com.pfl.component",
             minSdkVersion    : 15,
-            targetSdkVersion : 26,
+            targetSdkVersion : 27,
             versionCode      : 1,
             versionName      : "1.0"
     ]
 
     depsVersion = [
 
-            support            : "26.0.0-beta1",
+            support            : "27.0.2",
             constraint         : "1.0.2",
             retrofit           : "2.10",
             arouter            : "1.2.4",
             arouter_compiler   : "1.1.4",
             arouterAnnotation  : "1.0.4",
             bottomNavigationBar: "1.4.1",
+
+            multidex           : "1.0.0",
 
             dagger             : "2.14.1",
             dagger_compiler    : "2.14.1",
@@ -34,6 +36,8 @@ ext {
             okhttp             : "3.9.0",
             okio               : "1.13.0",
             logging_interceptor: "3.8.1",
+
+            glide              : "4.5.0",
 
             inflaterauto       : "2.0.17",
             hyena              : "1.6.1",
@@ -51,6 +55,8 @@ ext {
             appcompatV7          : "com.android.support:appcompat-v7:${depsVersion.support}",
             recyclerviewV7       : "com.android.support:recyclerview-v7:${depsVersion.support}",
             constraint           : "com.android.support.constraint:constraint-layout:${depsVersion.constraint}",
+
+            multidex             : "com.android.support:multidex:${depsVersion.multidex}",
 
             // Dagger2
             dagger               : "com.google.dagger:dagger:${depsVersion.dagger}",
@@ -73,6 +79,9 @@ ext {
             okhttp               : "com.squareup.okhttp3:okhttp:${depsVersion.okhttp}",
             okio                 : "com.squareup.okio:okio:${depsVersion.okio}",
             logging_interceptor  : "com.squareup.okhttp3:logging-interceptor:${depsVersion.logging_interceptor}",
+
+            glide                : "com.github.bumptech.glide:glide:${depsVersion.glide}",
+            glide_processor      : "com.github.bumptech.glide:compiler:${depsVersion.glide}",
 
             inflaterauto         : "com.yan:inflaterauto:${depsVersion.inflaterauto}",// UI适配库
             inflaterauto_compiler: "com.yan:inflaterauto-compiler:${depsVersion.inflaterauto}",// UI适配库
