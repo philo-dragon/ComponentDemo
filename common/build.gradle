@@ -87,6 +87,8 @@ dependencies {
     api rootProject.ext.deps.AndroidUtilCode
     //下拉刷新库
     api rootProject.ext.deps.SmartRefreshLayout
+    // 更改字体库
+    api rootProject.ext.deps.calligraphy
 
     api "cn.bingoogolapple:bga-banner:2.1.9@aar"
 

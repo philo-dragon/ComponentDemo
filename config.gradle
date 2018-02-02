@@ -44,6 +44,7 @@ ext {
             AndroidUtilCode    : "1.9.12",
             SmartRefreshLayout : "1.0.4",
 
+            calligraphy        : "2.3.0",
 
     ]
 
@@ -89,6 +90,7 @@ ext {
             AndroidUtilCode      : "com.blankj:utilcode:${depsVersion.AndroidUtilCode}",//工具类 http://www.jianshu.com/p/72494773aace
             SmartRefreshLayout   : "com.scwang.smartrefresh:SmartRefreshLayout:${depsVersion.SmartRefreshLayout}",//下拉刷新库
 
+            calligraphy          : "uk.co.chrisjenx:calligraphy:2.3.0",//更改全局字体库
 
     ]
 
