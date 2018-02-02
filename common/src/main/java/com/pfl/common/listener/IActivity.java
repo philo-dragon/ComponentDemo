@@ -1,5 +1,7 @@
 package com.pfl.common.listener;
 
+import android.view.View;
+
 import com.pfl.common.di.AppComponent;
 
 /**
@@ -16,7 +18,7 @@ public interface IActivity {
 
     int getContextView();
 
-    void initView();
+    void initView(View view);
 
     void initEvent();
 

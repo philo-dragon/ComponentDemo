@@ -9,10 +9,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.pfl.common.base.BaseFragment;
+import com.pfl.common.di.AppComponent;
 import com.pfl.common.entity.module_user.UserInfo;
 import com.pfl.common.service.ModuleUserRouteService;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.common.utils.StatusBarUtil;
+import com.pfl.common.weidget.TitleBar;
 import com.pfl.component.R;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
@@ -22,15 +25,21 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
  * A simple {@link Fragment} subclass.
  */
 @Route(path = RouteUtils.APP_HOME_FRAGMENT)
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment tv_textview
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+    public void componentInject(AppComponent appComponent) {
+
+    }
+
+    @Override
+    public int getContextView() {
+        return R.layout.fragment_home;
+    }
+
+    @Override
+    public void initView(View view) {
         TextView textView = view.findViewById(R.id.tv_textview);
-        TextView toolbarTitle = view.findViewById(R.id.toolbar_title);
-        toolbarTitle.setText("HomeFragment");
         UserInfo userInfo = ModuleUserRouteService.getUserInfo();
         if (null != userInfo) {
             textView.setText(userInfo.getName() + " , " + userInfo.getMobileNum());
@@ -42,8 +51,6 @@ public class HomeFragment extends Fragment {
                 RouteUtils.actionStart(RouteUtils.MODULE_USER_LOGIN_ACTIVITY);
             }
         });
-
-        StatusBarUtil.setPadding(getActivity(), view.findViewById(R.id.toolbar));
 
         RefreshLayout refreshLayout = view.findViewById(R.id.refreshLayout);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -58,9 +65,25 @@ public class HomeFragment extends Fragment {
                 refreshlayout.finishLoadmore(2000);
             }
         });
-
-
-        return view;
     }
 
+    @Override
+    protected String getTitle() {
+        return "HomeFragment";
+    }
+
+    @Override
+    protected boolean isNeedBack() {
+        return false;
+    }
+
+    @Override
+    public void initEvent() {
+
+    }
+
+    @Override
+    public void initData() {
+
+    }
 }

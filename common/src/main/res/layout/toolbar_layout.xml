@@ -1,31 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
-    android:elevation="1px"
-    app:contentInsetStart="0dp">
+    android:elevation="0dp"
+    app:contentInsetStart="0dp"
+    app:title="">
 
-    <ImageView
-        android:id="@+id/toolbar_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16px"
-        android:src="@drawable/ic_arrow_back_black_24dp"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/toolbar_title"
-        android:layout_width="wrap_content"
-        android:layout_height="90px"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textColor="#FF000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        tools:text="标题" />
+    <com.pfl.common.weidget.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </android.support.v7.widget.Toolbar>

@@ -33,7 +33,7 @@ public class Module2Fragment extends BaseFragment implements Module2View {
     }
 
     @Override
-    protected void componentInject(AppComponent appComponent) {
+    public void componentInject(AppComponent appComponent) {
         DaggerModule2Component.builder()
                 .appComponent(appComponent)
                 .module2Module(new Module2Module(this, this))
@@ -42,23 +42,22 @@ public class Module2Fragment extends BaseFragment implements Module2View {
     }
 
     @Override
-    protected int getContextView() {
+    public int getContextView() {
         return R.layout.fragment_module2;
     }
 
     @Override
-    protected boolean isNeedToolBar() {
-        return false;
+    public void initView(View view) {
+        textView = view.findViewById(R.id.textView);
     }
 
     @Override
-    protected void initView(View view) {
-        textView = view.findViewById(R.id.textView);
+    public void initData() {
         requestData();
     }
 
     @Override
-    protected void initEvent() {
+    public void initEvent() {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,4 +70,5 @@ public class Module2Fragment extends BaseFragment implements Module2View {
     public void onSuccess(String token) {
         textView.setText(token);
     }
+
 }

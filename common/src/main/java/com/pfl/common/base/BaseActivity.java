@@ -1,6 +1,7 @@
 package com.pfl.common.base;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +15,7 @@ import com.pfl.common.di.AppComponent;
 import com.pfl.common.listener.IActivity;
 import com.pfl.common.utils.App;
 import com.pfl.common.utils.StatusBarUtil;
+import com.pfl.common.weidget.TitleBar;
 import com.pfl.component.R;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.yan.inflaterauto.InflaterAuto;
@@ -36,7 +38,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
                 StatusBarUtil.immersive(BaseActivity.this);
                 componentInject(App.getInstance(BaseApplication.class).getAppComponent());
                 initToolbar();
-                initView();
+                initView(getWindow().getDecorView());
                 initEvent();
                 initData();
             }
@@ -44,14 +46,20 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
     }
 
     private void initToolbar() {
-        StatusBarUtil.darkMode(this, true);
         if (findViewById(R.id.toolbar) != null) {
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            StatusBarUtil.setPadding(this, toolbar);
-            toolbar.setTitle("");
-            ((TextView) findViewById(R.id.toolbar_title)).setText(getTitle());
-            findViewById(R.id.toolbar_back).setVisibility(isNeedBack() ? View.VISIBLE : View.INVISIBLE);
-            findViewById(R.id.toolbar_back).setOnClickListener(new View.OnClickListener() {
+            final TitleBar titleBar = findViewById(R.id.title_bar);
+            titleBar.setImmersive(isImmersive());
+            titleBar.setBackgroundColor(setBackGroundColor());
+            if (isNeedBack()) {
+                titleBar.setLeftImageResource(getLeftImageResource());
+                titleBar.setLeftText("返回");
+            }
+            titleBar.setLeftTextColor(setLeftTextColor());
+            titleBar.setTitle(getTitle());
+            titleBar.setTitleColor(setTitleColor());
+            titleBar.setDividerColor(setToolBarDividerColor());
+
+            titleBar.setLeftClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     finish();
@@ -60,7 +68,67 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
         }
     }
 
-    public boolean isNeedBack() {
+    /**
+     * is visible back button
+     *
+     * @return
+     */
+    protected boolean isNeedBack() {
+        return true;
+    }
+
+    /**
+     * set ivider color
+     *
+     * @return
+     */
+    protected int setToolBarDividerColor() {
+        return Color.TRANSPARENT;
+    }
+
+    /**
+     * set title color
+     *
+     * @return
+     */
+    protected int setTitleColor() {
+        return Color.WHITE;
+    }
+
+    /**
+     * set left text color
+     *
+     * @return
+     */
+    protected int setLeftTextColor() {
+        return Color.WHITE;
+    }
+
+    /**
+     * set background color
+     *
+     * @return
+     */
+    protected int setBackGroundColor() {
+        return Color.parseColor("#64b4ff");
+    }
+
+    /**
+     * set left image resid
+     *
+     * @return
+     */
+    protected int getLeftImageResource() {
+        return R.mipmap.back_green;
+    }
+
+    /**
+     * 是否沉浸式
+     *
+     * @return
+     */
+    @Override
+    public boolean isImmersive() {
         return true;
     }
 

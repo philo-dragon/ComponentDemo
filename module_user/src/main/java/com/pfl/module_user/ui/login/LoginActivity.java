@@ -1,5 +1,6 @@
 package com.pfl.module_user.ui.login;
 
+import android.view.View;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -27,7 +28,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    public void initView() {
+    public void initView(View view) {
 
         ImageView imgUser = findViewById(R.id.img_user);
         imageLoader.loadImage(this, ImageConfigImpl.

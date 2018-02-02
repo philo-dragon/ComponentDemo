@@ -1,11 +1,11 @@
 package com.pfl.component.ui.activity;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ashokvarma.bottomnavigation.BadgeItem;
@@ -16,14 +16,9 @@ import com.pfl.common.di.AppComponent;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.component.R;
-import com.pfl.component.di.main.DaggerMainComponent;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
-
-import retrofit2.Retrofit;
 
 
 @Route(path = RouteUtils.APP_MAIN_ACTIVITY)
@@ -52,9 +47,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     }
 
     @Override
-    public void initView() {
-
-        StatusBarUtil.darkMode(this, true);
+    public void initView(View view) {
 
         bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar.setTabSelectedListener(this);
@@ -171,13 +164,13 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     private void goToPosition(int position) {
         switch (position) {
             case 0:
-                StatusBarUtil.darkMode(this, true);
+                StatusBarUtil.darkMode(this, false);
                 break;
             case 1:
-                StatusBarUtil.darkMode(this, false);
+                StatusBarUtil.darkMode(this, true);
                 break;
             case 2:
-                StatusBarUtil.darkMode(this, false);
+                StatusBarUtil.darkMode(this, true);
                 break;
             case 3:
                 StatusBarUtil.darkMode(this, true);

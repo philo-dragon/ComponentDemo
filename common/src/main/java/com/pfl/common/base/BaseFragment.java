@@ -1,15 +1,20 @@
 package com.pfl.common.base;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.view.ViewTreeObserver;
 
 import com.pfl.common.di.AppComponent;
+import com.pfl.common.listener.IActivity;
 import com.pfl.common.utils.App;
+import com.pfl.common.utils.StatusBarUtil;
+import com.pfl.common.weidget.TitleBar;
 import com.pfl.component.R;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
@@ -17,7 +22,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
  * Created by rocky on 2017/12/27.
  */
 
-public abstract class BaseFragment extends RxFragment {
+public abstract class BaseFragment extends RxFragment implements IActivity {
 
     protected Activity mContext;
 
@@ -30,55 +35,106 @@ public abstract class BaseFragment extends RxFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.base_layout, container, false);
-
-        if (isNeedToolBar()) {
-            ViewStub titleStub = view.findViewById(R.id.titleStub);
-            titleStub.inflate();
-        }
-        ViewStub viewStub = view.findViewById(R.id.viewStub);
-        viewStub.setLayoutResource(getContextView());
-        viewStub.inflate();
-
-        return view;
+        return inflater.inflate(getContextView(), container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        componentInject(App.getInstance(BaseApplication.class).getAppComponent());
-        initView(view);
-        initEvent();
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                componentInject(App.getInstance(BaseApplication.class).getAppComponent());
+                initToolbar(view);
+                initView(view);
+                initEvent();
+                initData();
+            }
+        });
+    }
+
+    private void initToolbar(View view) {
+        if (view.findViewById(R.id.toolbar) != null) {
+            TitleBar titleBar = view.findViewById(R.id.title_bar);
+            titleBar.setImmersive(isImmersive());
+            titleBar.setBackgroundColor(setBackGroundColor());
+            if (isNeedBack()) {
+                titleBar.setLeftImageResource(getLeftImageResource());
+                titleBar.setLeftText("返回");
+            }
+            titleBar.setLeftTextColor(setLeftTextColor());
+            titleBar.setTitle(getTitle());
+            titleBar.setTitleColor(setTitleColor());
+            titleBar.setDividerColor(setToolBarDividerColor());
+        }
     }
 
     /**
-     * 依赖注入的入口
+     * is visible back button
+     *
+     * @return
      */
-    protected void componentInject(AppComponent appComponent) {
+    protected boolean isNeedBack() {
+        return true;
     }
 
     /**
-     * layoutId
+     * set ivider color
      *
      * @return
      */
-    protected abstract int getContextView();
+    protected int setToolBarDividerColor() {
+        return Color.TRANSPARENT;
+    }
 
     /**
-     * 是否需要ToolBar
+     * set title color
      *
      * @return
      */
-    protected abstract boolean isNeedToolBar();
+    protected int setTitleColor() {
+        return Color.WHITE;
+    }
 
     /**
-     * 初始化view
+     * set left text color
+     *
+     * @return
      */
-    protected abstract void initView(View view);
+    protected int setLeftTextColor() {
+        return Color.WHITE;
+    }
 
     /**
-     * 初始化event
+     * set background color
+     *
+     * @return
      */
-    protected abstract void initEvent();
+    protected int setBackGroundColor() {
+        return Color.parseColor("#64b4ff");
+    }
+
+    /**
+     * set left image resid
+     *
+     * @return
+     */
+    protected int getLeftImageResource() {
+        return R.mipmap.back_green;
+    }
+
+    /**
+     * 是否沉浸式
+     *
+     * @return
+     */
+    protected boolean isImmersive() {
+        return true;
+    }
+
+    protected String getTitle() {
+        return "";
+    }
+
 }
