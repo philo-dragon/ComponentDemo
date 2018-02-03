@@ -50,7 +50,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
                 .setSwipeEdge(200)//可滑动的范围。px。200表示为左边200px的屏幕
                 .setSwipeEdgePercent(0.2f)//可滑动的范围。百分比。0.2表示为左边20%的屏幕
                 .setSwipeSensitivity(1f)//对横向滑动手势的敏感程度。0为迟钝 1为敏感
-                .setScrimColor(Color.parseColor("#99000000"))//底层阴影颜色
+                .setScrimColor(Color.parseColor("#80000000"))//底层阴影颜色
                 .setClosePercent(0.4f)//触发关闭Activity百分比
                 .setSwipeRelateEnable(isSwipeRelateEnable())//是否与下一级activity联动(微信效果)。默认关
                 .setSwipeRelateOffset(500)//activity联动时的偏移量。默认500px。
@@ -98,11 +98,11 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
         if (findViewById(R.id.toolbar) != null) {
             final TitleBar titleBar = findViewById(R.id.title_bar);
             titleBar.setImmersive(isImmersive());
-            titleBar.setBackgroundColor(setBackGroundColor());
             if (isNeedBack()) {
                 titleBar.setLeftImageResource(getLeftImageResource());
                 titleBar.setLeftText("返回");
             }
+            titleBar.setBackgroundColor(setBackGroundColor());
             titleBar.setLeftTextColor(setLeftTextColor());
             titleBar.setTitle(getTitle());
             titleBar.setTitleColor(setTitleColor());
@@ -164,7 +164,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
      * @return
      */
     protected int setBackGroundColor() {
-        return Color.parseColor("#64b4ff");
+        return getResources().getColor(R.color.colorPrimary);
     }
 
     /**

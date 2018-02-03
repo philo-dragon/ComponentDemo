@@ -112,7 +112,7 @@ public abstract class BaseFragment extends RxFragment implements IActivity {
      * @return
      */
     protected int setBackGroundColor() {
-        return Color.parseColor("#64b4ff");
+        return getResources().getColor(R.color.colorPrimary);
     }
 
     /**
