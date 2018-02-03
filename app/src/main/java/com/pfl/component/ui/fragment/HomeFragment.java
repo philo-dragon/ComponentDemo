@@ -48,7 +48,7 @@ public class HomeFragment extends BaseFragment {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RouteUtils.actionStart(RouteUtils.MODULE_USER_LOGIN_ACTIVITY);
+                RouteUtils.actionStart(RouteUtils.MODULE_USER_LOGIN_ACTIVITY, R.anim.slide_in_bottom, R.anim.slide_out_bottom);
             }
         });
 

@@ -23,4 +23,5 @@ public interface IActivity {
     void initEvent();
 
     void initData();
+
 }

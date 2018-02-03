@@ -89,6 +89,8 @@ dependencies {
     api rootProject.ext.deps.SmartRefreshLayout
     // 更改字体库
     api rootProject.ext.deps.calligraphy
+    // 滑动返回库
+    api rootProject.ext.deps.swipebackhelper
 
     api "cn.bingoogolapple:bga-banner:2.1.9@aar"
 

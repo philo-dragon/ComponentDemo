@@ -183,6 +183,16 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     }
 
+    @Override
+    public boolean isSwipeBackEnable() {
+        return false;
+    }
+
+    @Override
+    public boolean isSwipeRelateEnable() {
+        return false;
+    }
+
     public static void actionStart(Context context) {
         context.startActivity(new Intent(context, MainActivity.class));
     }

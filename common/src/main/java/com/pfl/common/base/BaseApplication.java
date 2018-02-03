@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.jude.swipbackhelper.SwipeBackHelper;
 import com.pfl.common.di.AppComponent;
 import com.pfl.common.di.AppModule;
 import com.pfl.common.di.DaggerAppComponent;

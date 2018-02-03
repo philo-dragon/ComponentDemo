@@ -11,6 +11,8 @@ import android.view.ViewStub;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
+import com.jude.swipbackhelper.SwipeBackHelper;
+import com.jude.swipbackhelper.SwipeListener;
 import com.pfl.common.di.AppComponent;
 import com.pfl.common.listener.IActivity;
 import com.pfl.common.utils.App;
@@ -31,18 +33,65 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContextView());
+        initSwipeBack();
         getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                StatusBarUtil.immersive(BaseActivity.this);
-                componentInject(App.getInstance(BaseApplication.class).getAppComponent());
-                initToolbar();
-                initView(getWindow().getDecorView());
-                initEvent();
-                initData();
+                init();
             }
         });
+    }
+
+    protected void initSwipeBack() {
+        SwipeBackHelper.onCreate(this);
+        SwipeBackHelper.getCurrentPage(this)//获取当前页面
+                .setSwipeBackEnable(isSwipeBackEnable())//设置是否可滑动
+                .setSwipeEdge(200)//可滑动的范围。px。200表示为左边200px的屏幕
+                .setSwipeEdgePercent(0.2f)//可滑动的范围。百分比。0.2表示为左边20%的屏幕
+                .setSwipeSensitivity(1f)//对横向滑动手势的敏感程度。0为迟钝 1为敏感
+                .setScrimColor(Color.parseColor("#99000000"))//底层阴影颜色
+                .setClosePercent(0.4f)//触发关闭Activity百分比
+                .setSwipeRelateEnable(isSwipeRelateEnable())//是否与下一级activity联动(微信效果)。默认关
+                .setSwipeRelateOffset(500)//activity联动时的偏移量。默认500px。
+                .setDisallowInterceptTouchEvent(true)//不抢占事件，默认关（事件将先由子View处理再由滑动关闭处理）
+                .addListener(new SwipeListener() {//滑动监听
+
+                    @Override
+                    public void onScroll(float percent, int px) {//滑动的百分比与距离
+                    }
+
+                    @Override
+                    public void onEdgeTouch() {//当开始滑动
+                    }
+
+                    @Override
+                    public void onScrollToClose() {//当滑动关闭
+                    }
+                });
+    }
+
+    ;
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        SwipeBackHelper.onPostCreate(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
+    }
+
+    private void init() {
+        StatusBarUtil.immersive(this);
+        componentInject(App.getInstance(BaseApplication.class).getAppComponent());
+        initToolbar();
+        initView(getWindow().getDecorView());
+        initEvent();
+        initData();
     }
 
     private void initToolbar() {
@@ -57,15 +106,20 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
             titleBar.setLeftTextColor(setLeftTextColor());
             titleBar.setTitle(getTitle());
             titleBar.setTitleColor(setTitleColor());
+            titleBar.setActionTextColor(setActionTextColor());
             titleBar.setDividerColor(setToolBarDividerColor());
 
             titleBar.setLeftClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    finishActivity();
                 }
             });
         }
+    }
+
+    public void finishActivity() {
+        finish();
     }
 
     /**
@@ -123,12 +177,39 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
     }
 
     /**
+     * actionText color
+     *
+     * @return
+     */
+    private int setActionTextColor() {
+        return Color.WHITE;
+    }
+
+    /**
      * 是否沉浸式
      *
      * @return
      */
     @Override
     public boolean isImmersive() {
+        return true;
+    }
+
+    /**
+     * 是否滑动退出
+     *
+     * @return
+     */
+    public boolean isSwipeBackEnable() {
+        return true;
+    }
+
+    /**
+     * 是否与下一级activity联动
+     *
+     * @return
+     */
+    public boolean isSwipeRelateEnable() {
         return true;
     }
 
