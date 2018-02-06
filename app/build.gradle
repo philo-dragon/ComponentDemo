@@ -3,6 +3,10 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
 
+    dataBinding {
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "com.pfl.component"
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -46,7 +50,6 @@ dependencies {
     } else {
         implementation project(':common')
     }
-
 
     // ARouter 配置 3
     annotationProcessor rootProject.ext.deps.arouter_compiler

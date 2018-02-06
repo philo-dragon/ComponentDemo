@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.pfl.common.imageloader.BaseImageLoaderStrategy;
 import com.pfl.common.imageloader.ImageLoader;
 import com.pfl.common.imageloader.glide.GlideImageLoaderStrategy;
+import com.pfl.common.utils.AppConfig;
 
 import javax.inject.Singleton;
 
@@ -48,6 +49,13 @@ public class AppModule {
     @Singleton
     ImageLoader provideImageLoader(BaseImageLoaderStrategy imageLoaderStrategy) {
         return new ImageLoader(imageLoaderStrategy);
+    }
+
+    @Provides
+    @Singleton
+    AppConfig provideAppConfig() {
+        return new AppConfig.Builder()
+                .build();
     }
 
 }

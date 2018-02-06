@@ -14,9 +14,10 @@ import com.pfl.common.di.AppComponent;
  */
 public interface IActivity {
 
-    void componentInject(AppComponent appComponent);
 
     int getContextView();
+
+    void componentInject(AppComponent appComponent);
 
     void initView(View view);
 

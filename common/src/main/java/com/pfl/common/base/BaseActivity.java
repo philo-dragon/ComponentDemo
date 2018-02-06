@@ -1,6 +1,9 @@
 package com.pfl.common.base;
 
 import android.content.Context;
+import android.databinding.DataBindingComponent;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,7 +25,9 @@ import com.pfl.component.R;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.yan.inflaterauto.InflaterAuto;
 
-public abstract class BaseActivity extends RxAppCompatActivity implements IActivity {
+public abstract class BaseActivity<T> extends RxAppCompatActivity implements IActivity {
+
+    protected T mBinding;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -32,7 +37,11 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getContextView());
+        if (isSupportDataBindind()) {
+            mBinding = dataBinding(getContextView());
+        } else {
+            setContentView(getContextView());
+        }
         initSwipeBack();
         getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -43,6 +52,16 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
         });
     }
 
+    /**
+     * DataBinding
+     */
+    public T dataBinding(int resid) {
+        return (T) DataBindingUtil.setContentView(this, getContextView());
+    }
+
+    /**
+     * 右滑返回 配置
+     */
     protected void initSwipeBack() {
         SwipeBackHelper.onCreate(this);
         SwipeBackHelper.getCurrentPage(this)//获取当前页面
@@ -71,20 +90,38 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
                 });
     }
 
-    ;
+    /**
+     * 是否支持DataBind
+     *
+     * @return
+     */
+    protected boolean isSupportDataBindind() {
+        return true;
+    }
 
+    /**
+     * 右滑返回
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         SwipeBackHelper.onPostCreate(this);
     }
 
+    /**
+     * 右滑返回
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
         SwipeBackHelper.onDestroy(this);
     }
 
+    /**
+     * 初始化 数据
+     */
     private void init() {
         StatusBarUtil.immersive(this);
         componentInject(App.getInstance(BaseApplication.class).getAppComponent());
@@ -94,6 +131,9 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
         initData();
     }
 
+    /**
+     * 初始化TitleBar
+     */
     private void initToolbar() {
         if (findViewById(R.id.toolbar) != null) {
             final TitleBar titleBar = findViewById(R.id.title_bar);
@@ -118,6 +158,9 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
         }
     }
 
+    /**
+     * finish
+     */
     public void finishActivity() {
         finish();
     }
@@ -128,7 +171,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
      * @return
      */
     protected boolean isNeedBack() {
-        return true;
+        return App.getInstance(BaseApplication.class).getAppComponent().getAppConfig().isNeedBack();
     }
 
     /**
@@ -137,7 +180,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
      * @return
      */
     protected int setToolBarDividerColor() {
-        return Color.TRANSPARENT;
+        return App.getInstance(BaseApplication.class).getAppComponent().getAppConfig().getToolBarDividerColor();
     }
 
     /**
@@ -146,7 +189,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
      * @return
      */
     protected int setTitleColor() {
-        return Color.WHITE;
+        return App.getInstance(BaseApplication.class).getAppComponent().getAppConfig().getTitleColor();
     }
 
     /**
@@ -155,7 +198,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
      * @return
      */
     protected int setLeftTextColor() {
-        return Color.WHITE;
+        return App.getInstance(BaseApplication.class).getAppComponent().getAppConfig().getLeftTextColor();
     }
 
     /**
@@ -164,7 +207,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
      * @return
      */
     protected int setBackGroundColor() {
-        return getResources().getColor(R.color.colorPrimary);
+        return App.getInstance(BaseApplication.class).getAppComponent().getAppConfig().getBackGroundColor();
     }
 
     /**
@@ -173,7 +216,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
      * @return
      */
     protected int getLeftImageResource() {
-        return R.mipmap.back_green;
+        return App.getInstance(BaseApplication.class).getAppComponent().getAppConfig().getLeftImageResource();
     }
 
     /**
@@ -182,7 +225,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
      * @return
      */
     private int setActionTextColor() {
-        return Color.WHITE;
+        return App.getInstance(BaseApplication.class).getAppComponent().getAppConfig().getActionTextColor();
     }
 
     /**
@@ -192,7 +235,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
      */
     @Override
     public boolean isImmersive() {
-        return true;
+        return App.getInstance(BaseApplication.class).getAppComponent().getAppConfig().isImmersive();
     }
 
     /**
@@ -201,7 +244,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
      * @return
      */
     public boolean isSwipeBackEnable() {
-        return true;
+        return App.getInstance(BaseApplication.class).getAppComponent().getAppConfig().isSwipeBackEnable();
     }
 
     /**
@@ -210,7 +253,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IActiv
      * @return
      */
     public boolean isSwipeRelateEnable() {
-        return true;
+        return App.getInstance(BaseApplication.class).getAppComponent().getAppConfig().isSwipeRelateEnable();
     }
 
 }

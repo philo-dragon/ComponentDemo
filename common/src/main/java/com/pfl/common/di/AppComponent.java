@@ -5,6 +5,7 @@ import android.app.Application;
 import com.pfl.common.di.scope.FragmentScope;
 import com.pfl.common.http.RetrofitService;
 import com.pfl.common.imageloader.ImageLoader;
+import com.pfl.common.utils.AppConfig;
 
 import javax.inject.Singleton;
 
@@ -24,5 +25,7 @@ public interface AppComponent {
     RetrofitService getRetrofitService();
 
     ImageLoader getImageLoader();
+
+    AppConfig getAppConfig();
 
 }
