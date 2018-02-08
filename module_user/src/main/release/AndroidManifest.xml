@@ -6,7 +6,7 @@
         <activity android:name="com.pfl.module_user.MainActivity" />
         <activity
             android:name="com.pfl.module_user.ui.login.LoginActivity"
-            android:label="@string/label_login"/>
+            android:label="@string/label_login" />
     </application>
 
 </manifest>
