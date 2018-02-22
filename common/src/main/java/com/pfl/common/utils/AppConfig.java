@@ -10,17 +10,25 @@ import com.pfl.component.R;
 
 public class AppConfig {
 
-    private boolean isSwipeRelateEnable;
-    private boolean isSwipeBackEnable;
-    private boolean isImmersive;
-    private boolean isNeedBack;
-    private boolean isSupportDataBindind;
-    private int actionTextColor;
-    private int leftImageResource;
-    private int backGroundColor;
-    private int leftTextColor;
-    private int titleColor;
-    private int toolBarDividerColor;
+    private static final boolean DEFAULT_SWIPE_RELATE_ENABLE = true;
+    private static final boolean DEFAULT_SWIPE_BACK_ENABLE = true;
+    private static final boolean DEFAULT_IMMERSIVE = true;
+    private static final boolean DEFAULT_NEED_BACK = true;
+    private static final boolean DEFAULT_SUPPORT_DATA_BINDIND = false;
+
+    private static final int DEFAULT_TEXT_COLOR = Color.WHITE;
+
+    private boolean isSwipeRelateEnable = DEFAULT_SWIPE_RELATE_ENABLE;
+    private boolean isSwipeBackEnable = DEFAULT_SWIPE_BACK_ENABLE;
+    private boolean isImmersive = DEFAULT_IMMERSIVE;
+    private boolean isNeedBack = DEFAULT_NEED_BACK;
+    private boolean isSupportDataBindind = DEFAULT_SUPPORT_DATA_BINDIND;
+    private int actionTextColor = DEFAULT_TEXT_COLOR;
+    private int leftImageResource = R.mipmap.back_green;
+    private int backGroundColor = Color.parseColor("#3F51B5");
+    private int leftTextColor = DEFAULT_TEXT_COLOR;
+    private int titleColor = DEFAULT_TEXT_COLOR;
+    private int toolBarDividerColor = Color.WHITE;
 
     private AppConfig(Builder builder) {
         isSupportDataBindind = builder.isSupportDataBindind;
@@ -78,16 +86,16 @@ public class AppConfig {
     }
 
     public static final class Builder {
-        private boolean isSwipeRelateEnable = true;
-        private boolean isSwipeBackEnable = true;
-        private boolean isImmersive = true;
-        private boolean isNeedBack = true;
-        private boolean isSupportDataBindind = false;
-        private int actionTextColor = Color.WHITE;
+        private boolean isSwipeRelateEnable = DEFAULT_SWIPE_RELATE_ENABLE;
+        private boolean isSwipeBackEnable = DEFAULT_SWIPE_BACK_ENABLE;
+        private boolean isImmersive = DEFAULT_IMMERSIVE;
+        private boolean isNeedBack = DEFAULT_NEED_BACK;
+        private boolean isSupportDataBindind = DEFAULT_SUPPORT_DATA_BINDIND;
+        private int actionTextColor = DEFAULT_TEXT_COLOR;
         private int leftImageResource = R.mipmap.back_green;
         private int backGroundColor = Color.parseColor("#3F51B5");
-        private int leftTextColor = Color.WHITE;
-        private int titleColor = Color.WHITE;
+        private int leftTextColor = DEFAULT_TEXT_COLOR;
+        private int titleColor = DEFAULT_TEXT_COLOR;
         private int toolBarDividerColor = Color.WHITE;
 
         public Builder() {

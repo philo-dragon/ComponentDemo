@@ -32,7 +32,7 @@ public class BaseApplication extends Application {
 
     /**
      * 如果你使用了LayoutInflater.from(getApplicationContext())或者LayoutInflater.from(getApplication())
-     * 就需要一下操作，如果没有，一下方法可以不必重写
+     * 就需要一下操作，如果没有，以下方法不必重写
      */
     @Override
     protected void attachBaseContext(Context base) {
@@ -44,21 +44,29 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        BaseUrlManager.init("http://apitest.topzuqiu.cn/", "http://apitest.topzuqiu.cn/", false);//动态切换BaseUrl
+        initBaseUrl();
         initRouter(this);//初始化Router
         registerLifecycleCallbacks();//注册Activity生命周期监听
         initAppComponent();//Dagger2 初始化全局参数
         initAutoUI();
     }
 
-    private void initAutoUI() {
+    protected void initBaseUrl() {
+        BaseUrlManager.init("http://apitest.topzuqiu.cn/", "http://apitest.topzuqiu.cn/", false);//动态切换BaseUrl
+    }
 
-        /*
-         * 以下可以写在任何地方，只要在生成View之前
-         */
+    /**
+     * 以下可以写在任何地方，只要在生成View之前
+     */
+    private void initAutoUI() {
+        setAutoUI(720, 1280);
+    }
+
+    protected void setAutoUI(int w, int h) {
+
         InflaterAuto.init(new InflaterAuto.Builder()
-                .width(720)
-                .height(1280)
+                .width(w)
+                .height(h)
                 .baseOnDirection(AutoBaseOn.Both)// 宽度根据宽度比例缩放，长度根据长度比例缩放
                 // 由 com.yan.inflaterautotest.InflaterConvert 编译生成，自动添加前缀InfAuto
                 // 你也可以添加你自己的实现了Convert的类，替换任何一种view成为你想替换的view
@@ -68,7 +76,7 @@ public class BaseApplication extends Application {
 
     }
 
-    private void initAppComponent() {
+    protected void initAppComponent() {
 
         if (appComponent == null) {
             appComponent = DaggerAppComponent.builder()
@@ -80,7 +88,6 @@ public class BaseApplication extends Application {
     }
 
     public AppComponent getAppComponent() {
-        initAppComponent();
         return appComponent;
     }
 
@@ -94,7 +101,7 @@ public class BaseApplication extends Application {
         ARouter.init(application);
     }
 
-    public void registerLifecycleCallbacks() {
+    private void registerLifecycleCallbacks() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             registerActivityLifecycleCallbacks(new CallBacks() {
                 @Override

@@ -5,17 +5,10 @@
     android:background="@android:color/white"
     tools:context="com.pfl.module1.ui.fragment.Module1Fragment">
 
-    <com.pfl.common.test.MyRefreshLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="测试" />
-
-
-    </com.pfl.common.test.MyRefreshLayout>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="测试" />
 
 </FrameLayout>

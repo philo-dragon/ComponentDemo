@@ -87,7 +87,6 @@ public class LoginActivity extends BaseActivity {
 
                 String account = etAccount.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
-
                 if (AccountPasswordUtil.veriftyAccount(account.toString(), tilAccount) &&
                         AccountPasswordUtil.veriftyPassword(password.toString(), tilPassword)) {
 
