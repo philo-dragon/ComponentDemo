@@ -1,6 +1,5 @@
 package com.pfl.component.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -10,10 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.SPUtils;
-import com.blankj.utilcode.util.ToastUtils;
-import com.pfl.common.base.BaseActivity;
 import com.pfl.common.utils.AppManager;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.common.utils.StatusBarUtil;
@@ -31,7 +27,7 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         StatusBarUtil.immersive(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.app_activity_welcome);
         StatusBarUtil.setMargin(this, findViewById(R.id.tv_guide_skip));
         initView();
         setListener();

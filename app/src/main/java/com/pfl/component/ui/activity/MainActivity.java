@@ -32,7 +32,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     public int getContextView() {
-        return R.layout.activity_main;
+        return R.layout.app_activity_main;
     }
 
 

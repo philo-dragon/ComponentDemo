@@ -43,7 +43,7 @@ public class Module2Fragment extends BaseFragment implements Module2View {
 
     @Override
     public int getContextView() {
-        return R.layout.fragment_module2;
+        return R.layout.module2_fragment_module2;
     }
 
     @Override

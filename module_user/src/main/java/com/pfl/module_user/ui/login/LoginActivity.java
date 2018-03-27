@@ -39,7 +39,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public int getContextView() {
-        return R.layout.activity_login;
+        return R.layout.module_user_activity_login;
     }
 
     @Override
