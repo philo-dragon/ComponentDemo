@@ -74,12 +74,12 @@ public class StatusBarUtil {
 
     //<editor-fold desc="DarkMode">
     public static void darkMode(Activity activity, boolean dark) {
-        if (isFlyme4Later()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            darkModeForM(activity.getWindow(), dark);
+        } else if (isFlyme4Later()) {
             darkModeForFlyme4(activity.getWindow(), dark);
         } else if (isMIUI6Later()) {
             darkModeForMIUI6(activity.getWindow(), dark);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            darkModeForM(activity.getWindow(), dark);
         }
     }
 
@@ -98,14 +98,14 @@ public class StatusBarUtil {
      * 设置状态栏darkMode,字体颜色及icon变黑(目前支持MIUI6以上,Flyme4以上,Android M以上)
      */
     public static void darkMode(Window window, int color, @FloatRange(from = 0.0, to = 1.0) float alpha) {
-        if (isFlyme4Later()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            darkModeForM(window, true);
+            immersive(window, color, alpha);
+        } else if (isFlyme4Later()) {
             darkModeForFlyme4(window, true);
             immersive(window, color, alpha);
         } else if (isMIUI6Later()) {
             darkModeForMIUI6(window, true);
-            immersive(window, color, alpha);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            darkModeForM(window, true);
             immersive(window, color, alpha);
         } else if (Build.VERSION.SDK_INT >= MIN_API) {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
