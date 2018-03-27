@@ -1,22 +1,15 @@
 package com.pfl.common.base;
 
 import android.content.Context;
-import android.databinding.DataBindingComponent;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewStub;
 import android.view.ViewTreeObserver;
-import android.widget.TextView;
 
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.jude.swipbackhelper.SwipeListener;
-import com.pfl.common.di.AppComponent;
 import com.pfl.common.listener.IActivity;
 import com.pfl.common.utils.App;
 import com.pfl.common.utils.StatusBarUtil;
