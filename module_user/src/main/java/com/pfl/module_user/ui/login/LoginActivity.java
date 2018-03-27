@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
 import com.pfl.common.base.BaseActivity;
+import com.pfl.common.base.BaseActivity2;
 import com.pfl.common.di.AppComponent;
 import com.pfl.common.imageloader.ImageLoader;
 import com.pfl.common.imageloader.glide.ImageConfigImpl;
@@ -18,7 +19,7 @@ import com.pfl.component.R;
 import com.pfl.module_user.utils.AccountPasswordUtil;
 
 @Route(path = RouteUtils.MODULE_USER_LOGIN_ACTIVITY)
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity2 {
 
 
     private ImageLoader imageLoader;
