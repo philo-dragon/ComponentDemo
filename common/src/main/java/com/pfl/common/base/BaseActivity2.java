@@ -1,15 +1,15 @@
 package com.pfl.common.base;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
-import com.pfl.common.di.AppComponent;
 import com.pfl.common.listener.IActivity;
 import com.pfl.common.utils.App;
 import com.pfl.common.utils.StatusBarUtil;
+import com.pfl.component.R;
 
 /**
  * Created by rocky on 2018/3/27.
@@ -28,7 +28,8 @@ public abstract class BaseActivity2<T> extends AppCompatActivity implements IAct
             setContentView(getContextView());
         }
 
-        StatusBarUtil.immersive(this);
+        StatusBarUtil.setPadding(this, findViewById(R.id.app_bar_layout));
+        StatusBarUtil.immersive(this, Color.DKGRAY);
         componentInject(App.getInstance(BaseApplication.class).getAppComponent());
         initView(getWindow().getDecorView());
         initEvent();
