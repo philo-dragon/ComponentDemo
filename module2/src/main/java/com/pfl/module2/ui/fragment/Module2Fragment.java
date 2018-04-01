@@ -9,7 +9,7 @@ import com.pfl.common.base.BaseFragment;
 import com.pfl.common.di.AppComponent;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.common.utils.StatusBarUtil;
-import com.pfl.component.R;
+import com.pfl.module2.R;
 import com.pfl.module2.di.module2.DaggerModule2Component;
 import com.pfl.module2.di.module2.Module2Module;
 import com.pfl.module2.mvp.module2.Module2Persenter;

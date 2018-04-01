@@ -8,14 +8,13 @@ import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
-import com.pfl.common.base.BaseActivity;
 import com.pfl.common.base.BaseActivity2;
 import com.pfl.common.di.AppComponent;
 import com.pfl.common.imageloader.ImageLoader;
 import com.pfl.common.imageloader.glide.ImageConfigImpl;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.common.weidget.TitleBar;
-import com.pfl.component.R;
+import com.pfl.module_user.R;
 import com.pfl.module_user.utils.AccountPasswordUtil;
 
 @Route(path = RouteUtils.MODULE_USER_LOGIN_ACTIVITY)
@@ -23,7 +22,7 @@ public class LoginActivity extends BaseActivity2 {
 
 
     private ImageLoader imageLoader;
-    private ImageView mCollectView;
+    //private ImageView mCollectView;
 
     private TextInputLayout tilAccount;
     private TextInputLayout tilPassword;
@@ -54,7 +53,6 @@ public class LoginActivity extends BaseActivity2 {
 
         btnSubmit = findViewById(R.id.btn_submit);
 
-
         ImageView imgUser = findViewById(R.id.img_user);
         imageLoader.loadImage(this, ImageConfigImpl.
                 builder().url("http://g.hiphotos.baidu.com/image/pic/item/c8ea15ce36d3d539f09733493187e950342ab095.jpg").
@@ -63,7 +61,7 @@ public class LoginActivity extends BaseActivity2 {
 
         TitleBar titleBar = findViewById(R.id.title_bar);
 
-        mCollectView = (ImageView) titleBar.addAction(new TitleBar.ImageAction(R.mipmap.collect) {
+      /*  mCollectView = (ImageView) titleBar.addAction(new TitleBar.ImageAction(R.mipmap.collect) {
             @Override
             public void performAction(View view) {
                 ToastUtils.showShort("点击了收藏");
@@ -76,11 +74,9 @@ public class LoginActivity extends BaseActivity2 {
             public void performAction(View view) {
                 ToastUtils.showShort("点击了发布");
             }
-        });
-
+        });*/
         AccountPasswordUtil.setAccount(etAccount, tilAccount);
         AccountPasswordUtil.setPassword(etPassword, tilPassword);
-
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

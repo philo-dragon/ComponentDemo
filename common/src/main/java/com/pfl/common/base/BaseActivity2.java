@@ -22,13 +22,7 @@ public abstract class BaseActivity2<T> extends AppCompatActivity implements IAct
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (isSupportDataBindind()) {
-            mBinding = dataBinding();
-        } else {
-            setContentView(getContextView());
-        }
-
-        StatusBarUtil.setPadding(this, findViewById(R.id.app_bar_layout));
+        setContentView();
         StatusBarUtil.immersive(this, Color.DKGRAY);
         componentInject(App.getInstance(BaseApplication.class).getAppComponent());
         initView(getWindow().getDecorView());
@@ -36,15 +30,23 @@ public abstract class BaseActivity2<T> extends AppCompatActivity implements IAct
         initData();
     }
 
+    private void setContentView() {
+        if (isSupportDataBindind()) {
+            mBinding = dataBinding();
+        } else {
+            setContentView(getContextView());
+        }
+    }
+
     /**
      * DataBinding
      */
-    public T dataBinding() {
+    private T dataBinding() {
         return (T) DataBindingUtil.setContentView(this, getContextView());
     }
 
     private boolean isSupportDataBindind() {
-        return false;
+        return true;
     }
 
     protected void finishActivity() {
