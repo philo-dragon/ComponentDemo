@@ -1,11 +1,11 @@
 package com.pfl.component.ui.activity;
 
-import android.content.Context;
-import android.content.Intent;
+import android.app.Activity;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ashokvarma.bottomnavigation.BadgeItem;
@@ -13,11 +13,13 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.pfl.common.base.BaseActivity;
 import com.pfl.common.di.AppComponent;
+import com.pfl.common.utils.AppManager;
 import com.pfl.common.utils.RouteUtils;
 import com.pfl.common.utils.StatusBarUtil;
 import com.pfl.component.R;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -48,7 +50,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     public void initView(View view) {
-
+        finishTopActivity();
         bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar.setTabSelectedListener(this);
         //设置被选中时隐藏角标
@@ -122,6 +124,17 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     }
 
+    private void finishTopActivity() {
+        Iterator<Activity> it = AppManager.getAppManager().getActivityStack().iterator();
+        while (it.hasNext()) {
+            Activity activity = it.next();
+            if (!(activity instanceof MainActivity)) {
+                it.remove();
+                AppManager.getAppManager().finishActivity(activity);
+            }
+        }
+    }
+
     @Override
     public void initEvent() {
 
@@ -183,18 +196,23 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     }
 
-    @Override
-    public boolean isSwipeBackEnable() {
-        return false;
-    }
 
-    @Override
-    public boolean isSwipeRelateEnable() {
-        return false;
-    }
+    private long lastTime;
 
-    public static void actionStart(Context context) {
-        context.startActivity(new Intent(context, MainActivity.class));
+    /**
+     * 连续按两次退出应用处理
+     */
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+
+        if (currentTime - lastTime < 2 * 1000) {
+            AppManager.getAppManager().AppExit(this);
+            super.onBackPressed();
+        } else {
+            Toast.makeText(getApplicationContext(), "再按一次退出应用", Toast.LENGTH_SHORT).show();
+            lastTime = currentTime;
+        }
     }
 
 }

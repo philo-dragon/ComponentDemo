@@ -15,7 +15,7 @@ import com.pfl.component.R;
  * Created by rocky on 2018/3/27.
  */
 
-public abstract class BaseActivity2<T> extends AppCompatActivity implements IActivity {
+public abstract class BaseActivity<T> extends AppCompatActivity implements IActivity {
 
     protected T mBinding;
 
@@ -23,7 +23,7 @@ public abstract class BaseActivity2<T> extends AppCompatActivity implements IAct
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView();
-        StatusBarUtil.immersive(this, Color.DKGRAY);
+        StatusBarUtil.immersive(this);
         componentInject(App.getInstance(BaseApplication.class).getAppComponent());
         initView(getWindow().getDecorView());
         initEvent();
@@ -47,9 +47,5 @@ public abstract class BaseActivity2<T> extends AppCompatActivity implements IAct
 
     private boolean isSupportDataBindind() {
         return true;
-    }
-
-    protected void finishActivity() {
-        finish();
     }
 }

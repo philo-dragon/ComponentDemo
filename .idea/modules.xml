@@ -3,17 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ComponentDemo.iml" filepath="$PROJECT_DIR$/ComponentDemo.iml" />
-      <module fileurl="file://D:\workspace\ComponentDemo\ComponentDemo.iml" filepath="D:\workspace\ComponentDemo\ComponentDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\workspace\ComponentDemo\app\app.iml" filepath="D:\workspace\ComponentDemo\app\app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
-      <module fileurl="file://D:\workspace\ComponentDemo\common\common.iml" filepath="D:\workspace\ComponentDemo\common\common.iml" />
+      <module fileurl="file://D:\workspace\ComponentDemo\lib_common\common.iml" filepath="D:\workspace\ComponentDemo\lib_common\common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib_common/lib_common.iml" filepath="$PROJECT_DIR$/lib_common/lib_common.iml" />
       <module fileurl="file://$PROJECT_DIR$/module1/module1.iml" filepath="$PROJECT_DIR$/module1/module1.iml" />
-      <module fileurl="file://D:\workspace\ComponentDemo\module1\module1.iml" filepath="D:\workspace\ComponentDemo\module1\module1.iml" />
       <module fileurl="file://$PROJECT_DIR$/module2/module2.iml" filepath="$PROJECT_DIR$/module2/module2.iml" />
-      <module fileurl="file://D:\workspace\ComponentDemo\module2\module2.iml" filepath="D:\workspace\ComponentDemo\module2\module2.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_user/module_user.iml" filepath="$PROJECT_DIR$/module_user/module_user.iml" />
-      <module fileurl="file://D:\workspace\ComponentDemo\module_user\module_user.iml" filepath="D:\workspace\ComponentDemo\module_user\module_user.iml" />
     </modules>
   </component>
 </project>

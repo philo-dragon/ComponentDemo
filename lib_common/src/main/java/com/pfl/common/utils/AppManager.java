@@ -3,6 +3,7 @@ package com.pfl.common.utils;
 import android.app.Activity;
 import android.content.Context;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 /**
@@ -29,6 +30,10 @@ public class AppManager {
 
     public boolean isEmpty() {
         return null == activityStack || activityStack.isEmpty();
+    }
+
+    public Stack<Activity> getActivityStack() {
+        return activityStack;
     }
 
     /**

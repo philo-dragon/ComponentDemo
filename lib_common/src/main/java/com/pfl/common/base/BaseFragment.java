@@ -55,7 +55,7 @@ public abstract class BaseFragment extends RxFragment implements IActivity {
     }
 
     private void initToolbar(View view) {
-        if (view.findViewById(R.id.toolbar) != null) {
+      /*  if (view.findViewById(R.id.toolbar) != null) {
             TitleBar titleBar = view.findViewById(R.id.title_bar);
             titleBar.setImmersive(isImmersive());
             titleBar.setBackgroundColor(setBackGroundColor());
@@ -67,7 +67,7 @@ public abstract class BaseFragment extends RxFragment implements IActivity {
             titleBar.setTitle(getTitle());
             titleBar.setTitleColor(setTitleColor());
             titleBar.setDividerColor(setToolBarDividerColor());
-        }
+        }*/
     }
 
     /**

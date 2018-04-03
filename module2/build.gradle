@@ -63,7 +63,7 @@ android {
 
 dependencies {
 
-    api project(':common')
+    api project(':lib_common')
 
     // ARouter 配置 3
     annotationProcessor rootProject.ext.deps.arouter_compiler
