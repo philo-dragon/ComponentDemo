@@ -13,6 +13,7 @@ import com.pfl.common.di.AppComponent;
 import com.pfl.common.di.AppModule;
 import com.pfl.common.di.DaggerAppComponent;
 import com.pfl.common.di.NetworkModule;
+import com.pfl.common.listener.IApplicationLike;
 import com.pfl.common.utils.AppConfig;
 import com.pfl.common.utils.AppManager;
 import com.pfl.common.utils.BaseUrlManager;
@@ -44,11 +45,34 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        initModuleApp();
         initBaseUrl();
         initRouter(this);//初始化Router
         registerLifecycleCallbacks();//注册Activity生命周期监听
         initAppComponent();//Dagger2 初始化全局参数
         initAutoUI();
+    }
+
+    private void initModuleApp() {
+
+        String[] clazzs = {"com.pfl.module1.init.Module1Application"
+                , "com.pfl.module2.init.Module2ApplicationLike"
+                , "com.pfl.module_user.init.UserApplicationLike"};
+        for (String clazz : clazzs) {
+            try {
+                Class aClass = Class.forName(clazz);
+                if(aClass.newInstance() instanceof IApplicationLike){
+                    ((IApplicationLike)aClass.newInstance()).init();
+                }
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     protected void initBaseUrl() {
