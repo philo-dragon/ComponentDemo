@@ -61,8 +61,8 @@ public class BaseApplication extends Application {
         for (String clazz : clazzs) {
             try {
                 Class aClass = Class.forName(clazz);
-                if(aClass.newInstance() instanceof IApplicationLike){
-                    ((IApplicationLike)aClass.newInstance()).init();
+                if (aClass.newInstance() instanceof IApplicationLike) {
+                    ((IApplicationLike) aClass.newInstance()).init(BaseApplication.this);
                 }
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
